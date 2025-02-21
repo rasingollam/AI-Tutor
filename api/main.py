@@ -1,9 +1,11 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import sys
 import os
 from pathlib import Path
+import json
+from typing import Optional
 
 # Add parent directory to Python path to import modules
 api_dir = Path(__file__).resolve().parent
@@ -62,32 +64,107 @@ async def process_image_problem(file: UploadFile = File(...)):
         contents = await file.read()
         image = Image.open(BytesIO(contents))
         
-        # Extract problem from image
-        problem_data = image_processor.process_image(image, mode="problem")
+        # Save image temporarily
+        temp_path = "temp_image.jpg"
+        image.save(temp_path)
         
-        if problem_data:
-            # Generate steps
-            steps = scaffolding_engine.generate_scaffolding(
-                concept="unknown",
-                problem_analysis="",
-                knowledge_assessment="",
-                problem_text=problem_data["problem_text"]
-            )
-            return {
-                "success": True,
-                "problem": problem_data["problem_text"],
-                "steps": steps
-            }
-        raise HTTPException(status_code=400, detail="Could not extract problem from image")
+        try:
+            # Extract problem from image
+            problem_data = image_processor.process_image(temp_path, mode="problem")
+            
+            if problem_data and "problem_text" in problem_data:
+                # Generate steps
+                steps = scaffolding_engine.generate_scaffolding(
+                    concept="unknown",
+                    problem_analysis="",
+                    knowledge_assessment="",
+                    problem_text=problem_data["problem_text"]
+                )
+                return {
+                    "success": True,
+                    "problem": problem_data["problem_text"],
+                    "steps": steps
+                }
+            else:
+                raise HTTPException(
+                    status_code=400, 
+                    detail="Could not extract valid problem text from image"
+                )
+        finally:
+            # Clean up temp file
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+                
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error processing image: {str(e)}"
+        )
+
+@app.post("/process-combined-problem")
+async def process_combined_problem(
+    file: Optional[UploadFile] = None,
+    text: Optional[str] = Form(None)
+):
+    try:
+        problem_text = text or ""
+        
+        if file:
+            # Read and process the image
+            contents = await file.read()
+            image = Image.open(BytesIO(contents))
+            
+            # Save image temporarily
+            temp_path = "temp_image.jpg"
+            image.save(temp_path)
+            
+            try:
+                # Extract problem from image
+                problem_data = image_processor.process_image(temp_path, mode="problem")
+                
+                if problem_data and "problem_text" in problem_data:
+                    # Combine text and image problem
+                    if problem_text:
+                        problem_text = f"{problem_text}\n{problem_data['problem_text']}"
+                    else:
+                        problem_text = problem_data["problem_text"]
+            finally:
+                # Clean up temp file
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+        
+        if not problem_text:
+            raise HTTPException(
+                status_code=400,
+                detail="No problem text provided in either text or image"
+            )
+            
+        # Generate steps
+        steps = scaffolding_engine.generate_scaffolding(
+            concept="unknown",
+            problem_analysis="",
+            knowledge_assessment="",
+            problem_text=problem_text
+        )
+        return {
+            "success": True,
+            "problem": problem_text,
+            "steps": steps
+        }
+                
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error processing problem: {str(e)}"
+        )
 
 @app.post("/validate-answer")
-async def validate_answer(step_data: dict, answer: str):
+async def validate_answer(step_data: str = Form(...), answer: str = Form(...)):
     try:
+        step_data_dict = json.loads(step_data)
         result = answer_validator.validate_answer(
-            step_instruction=step_data["instruction"],
-            expected_answer=step_data["expected_answer"],
+            step_instruction=step_data_dict["instruction"],
+            expected_answer=step_data_dict["expected_answer"],
             user_answer=answer
         )
         return {"success": True, "validation": result}

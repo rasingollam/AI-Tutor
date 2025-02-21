@@ -1,126 +1,135 @@
 import React, { useState } from 'react';
 import {
   View,
-  Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
-  Alert,
+  StyleSheet,
+  Text,
+  Image,
   ActivityIndicator,
+  Alert,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
 import { processProblem } from '../services/api';
 
 export default function HomeScreen({ navigation }) {
-  const [textProblem, setTextProblem] = useState('');
+  const [problemText, setProblemText] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleTextSubmit = async () => {
-    if (!textProblem.trim()) {
-      Alert.alert('Error', 'Please enter a math problem');
+  const pickImage = async () => {
+    console.log('Starting image picker...');
+    
+    // Request permission
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    console.log('Image picker permission status:', status);
+    
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Please grant permission to access your photos.');
+      return;
+    }
+
+    console.log('Launching image picker...');
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log('Image picker result:', result);
+
+    if (!result.canceled && result.assets && result.assets[0]) {
+      console.log('Image selected:', result.assets[0].uri);
+      setSelectedImage(result.assets[0].uri);
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+  };
+
+  const handleSubmit = async () => {
+    if (!problemText.trim() && !selectedImage) {
+      Alert.alert('Input needed', 'Please enter a problem or select an image.');
       return;
     }
 
     setLoading(true);
     try {
-      const response = await processProblem(textProblem);
-      setLoading(false);
-      
+      const response = await processProblem(problemText.trim(), selectedImage);
+      console.log('API Response:', response);
+
       if (response.success) {
-        navigation.navigate('Tutor', {
-          problem: textProblem,
-          steps: response.steps.steps // Access the steps array from the response
+        // Extract steps from the nested structure
+        const steps = response.steps?.steps || [];
+        console.log('Extracted steps:', steps);
+        navigation.navigate('Tutor', { 
+          steps: steps,
+          problem: response.problem || problemText
         });
       } else {
         Alert.alert('Error', response.error || 'Failed to process problem');
       }
     } catch (error) {
-      setLoading(false);
+      console.error('Error:', error);
       Alert.alert('Error', 'Failed to process problem');
-      console.error(error);
-    }
-  };
-
-  const handleImagePick = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    
-    if (status !== 'granted') {
-      Alert.alert('Permission needed', 'Please grant camera roll permissions');
-      return;
-    }
-
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 1,
-      });
-
-      if (!result.canceled) {
-        setLoading(true);
-        const response = await processProblem(result.assets[0].uri, true);
-        setLoading(false);
-        
-        if (response.success) {
-          navigation.navigate('Tutor', {
-            problem: response.problem,
-            steps: response.steps.steps
-          });
-        } else {
-          Alert.alert('Error', response.error || 'Failed to process image');
-        }
-      }
-    } catch (error) {
+    } finally {
       setLoading(false);
-      Alert.alert('Error', 'Failed to process image');
-      console.error(error);
     }
   };
 
   return (
     <KeyboardAvoidingView 
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title}>AI Math Tutor</Text>
-        <Text style={styles.subtitle}>Enter a problem or upload an image</Text>
-        
+      <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Enter your math problem"
-          value={textProblem}
-          onChangeText={setTextProblem}
+          placeholder="Enter your math problem here..."
+          value={problemText}
+          onChangeText={setProblemText}
           multiline
-          numberOfLines={4}
+          numberOfLines={3}
           textAlignVertical="top"
         />
-
         <TouchableOpacity 
-          style={styles.button}
-          onPress={handleTextSubmit}
-          disabled={loading}
+          style={styles.imageButton} 
+          onPress={pickImage}
         >
-          <Text style={styles.buttonText}>Solve Text Problem</Text>
+          <Ionicons name="image-outline" size={24} color="#007AFF" />
         </TouchableOpacity>
+      </View>
 
-        <TouchableOpacity 
-          style={[styles.button, styles.imageButton]}
-          onPress={handleImagePick}
-          disabled={loading}
-        >
-          <Text style={styles.buttonText}>Upload Image Problem</Text>
-        </TouchableOpacity>
+      {selectedImage && (
+        <View style={styles.imagePreviewContainer}>
+          <Image
+            source={{ uri: selectedImage }}
+            style={styles.imagePreview}
+          />
+          <TouchableOpacity 
+            style={styles.removeImageButton}
+            onPress={removeImage}
+          >
+            <Ionicons name="close-circle" size={24} color="#FF3B30" />
+          </TouchableOpacity>
+        </View>
+      )}
 
-        {loading && (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#007AFF" />
-            <Text style={styles.loadingText}>Processing...</Text>
-          </View>
+      <TouchableOpacity
+        style={[styles.submitButton, loading && styles.submitButtonDisabled]}
+        onPress={handleSubmit}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color="#FFFFFF" />
+        ) : (
+          <Text style={styles.submitButtonText}>Solve Problem</Text>
         )}
-      </ScrollView>
+      </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 }
@@ -128,65 +137,73 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollContent: {
     padding: 20,
-    flexGrow: 1,
+    backgroundColor: '#F9F9F9',
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-    color: '#1a1a1a',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     marginBottom: 20,
-    textAlign: 'center',
+    borderRadius: 12,
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
+    flex: 1,
     padding: 15,
-    borderRadius: 12,
-    marginBottom: 20,
-    minHeight: 120,
-    backgroundColor: '#f9f9f9',
     fontSize: 16,
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    color: '#333',
+    minHeight: 100,
   },
   imageButton: {
-    backgroundColor: '#34C759',
+    padding: 15,
+    alignSelf: 'flex-start',
   },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: 'bold',
+  imagePreviewContainer: {
+    marginBottom: 20,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  loadingContainer: {
-    marginTop: 20,
+  imagePreview: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+  },
+  removeImageButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 4,
+  },
+  submitButton: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 15,
+    borderRadius: 12,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  loadingText: {
-    marginTop: 10,
-    color: '#666',
-    fontSize: 16,
+  submitButtonDisabled: {
+    backgroundColor: '#B4D8FD',
+  },
+  submitButtonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
   },
 });

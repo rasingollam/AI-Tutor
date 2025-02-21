@@ -1,255 +1,280 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
+  StyleSheet,
   Alert,
   ScrollView,
   ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform
 } from 'react-native';
 import { validateAnswer } from '../services/api';
 
 export default function TutorScreen({ route, navigation }) {
-  const { problem, steps } = route.params;
+  const { steps = [], problem = '' } = route.params || {};
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
   const [loading, setLoading] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [attempts, setAttempts] = useState(0);
-  const [stepCompleted, setStepCompleted] = useState(false);
+  const maxAttempts = 5;
 
-  const currentStep = steps[currentStepIndex];
+  // Ensure we have valid steps data
+  useEffect(() => {
+    if (!Array.isArray(steps) || steps.length === 0) {
+      console.error('Invalid steps data:', steps);
+      Alert.alert(
+        'Error',
+        'No steps available for this problem',
+        [{ text: 'Go Back', onPress: () => navigation.goBack() }]
+      );
+    } else {
+      console.log('Valid steps data received:', steps);
+    }
+  }, [steps, navigation]);
+
+  // Get current step safely
+  const currentStep = steps[currentStepIndex] || {};
+  const isLastStep = currentStepIndex === steps.length - 1;
 
   const handleAnswerSubmit = async () => {
     if (!userAnswer.trim()) {
-      Alert.alert('Error', 'Please enter your answer');
+      Alert.alert('Error', 'Please enter an answer');
+      return;
+    }
+
+    if (!currentStep?.instruction || !currentStep?.expected_answer) {
+      console.error('Invalid step data:', currentStep);
+      Alert.alert('Error', 'Invalid step data');
       return;
     }
 
     setLoading(true);
     try {
-      const response = await validateAnswer(currentStep, userAnswer);
-      setLoading(false);
+      console.log('Validating answer for step:', currentStep);
+      const validation = await validateAnswer(currentStep, userAnswer.trim());
+      console.log('Validation result:', validation);
 
-      if (response.success) {
-        const { validation } = response;
-        if (validation.is_correct) {
-          setStepCompleted(true);
-          Alert.alert(
-            'Correct!', 
-            validation.explanation,
-            [
-              { 
-                text: 'Next Step', 
-                onPress: handleNextStep 
+      if (validation.success && validation.validation.is_correct) {
+        setAttempts(0); // Reset attempts for next step
+        Alert.alert(
+          'Correct!',
+          'Well done! Moving to next step...',
+          [{ 
+            text: 'Continue',
+            onPress: () => {
+              if (!isLastStep) {
+                setCurrentStepIndex(prev => prev + 1);
+                setUserAnswer('');
+                setShowHint(false);
+              } else {
+                Alert.alert(
+                  'Congratulations!',
+                  'You have completed all steps!',
+                  [{ text: 'Finish', onPress: () => navigation.goBack() }]
+                );
               }
-            ]
+            }
+          }]
+        );
+      } else {
+        const newAttempts = attempts + 1;
+        setAttempts(newAttempts);
+        
+        if (newAttempts >= maxAttempts) {
+          Alert.alert(
+            'Maximum Attempts Reached',
+            `The correct answer was: ${currentStep.expected_answer}\n\nExplanation: ${currentStep.explanation}`,
+            [{ 
+              text: 'Next Step',
+              onPress: () => {
+                if (!isLastStep) {
+                  setCurrentStepIndex(prev => prev + 1);
+                  setUserAnswer('');
+                  setShowHint(false);
+                  setAttempts(0);
+                } else {
+                  navigation.goBack();
+                }
+              }
+            }]
           );
         } else {
-          setAttempts(prev => prev + 1);
-          if (attempts >= 1) {
-            Alert.alert(
-              'Incorrect',
-              `The correct answer was: ${currentStep.expected_answer}\n\nExplanation: ${currentStep.explanation}`,
-              [
-                { 
-                  text: 'Next Step', 
-                  onPress: handleNextStep 
-                }
-              ]
-            );
-          } else {
-            Alert.alert('Incorrect', validation.explanation);
-          }
+          Alert.alert(
+            'Incorrect',
+            `Try again! You have ${maxAttempts - newAttempts} attempts remaining.`
+          );
         }
-      } else {
-        Alert.alert('Error', response.error || 'Failed to validate answer');
       }
     } catch (error) {
-      setLoading(false);
+      console.error('Error validating answer:', error);
       Alert.alert('Error', 'Failed to validate answer');
-      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleNextStep = () => {
-    if (currentStepIndex < steps.length - 1) {
-      setCurrentStepIndex(prev => prev + 1);
-      setUserAnswer('');
-      setShowHint(false);
-      setAttempts(0);
-      setStepCompleted(false);
-    } else {
-      Alert.alert(
-        'Congratulations!',
-        'You have completed all steps!',
-        [
-          {
-            text: 'Start New Problem',
-            onPress: () => navigation.navigate('Home')
-          }
-        ]
-      );
-    }
-  };
-
-  const toggleHint = () => {
-    setShowHint(!showHint);
-  };
+  if (!Array.isArray(steps) || steps.length === 0) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>No steps available</Text>
+      </View>
+    );
+  }
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.problemContainer}>
-          <Text style={styles.label}>Problem:</Text>
-          <Text style={styles.problemText}>{problem}</Text>
-        </View>
+    <ScrollView style={styles.container}>
+      <View style={styles.problemContainer}>
+        <Text style={styles.problemTitle}>Problem:</Text>
+        <Text style={styles.problemText}>{problem}</Text>
+      </View>
 
-        <View style={styles.stepContainer}>
-          <Text style={styles.label}>Step {currentStepIndex + 1} of {steps.length}:</Text>
-          <Text style={styles.instruction}>{currentStep.instruction}</Text>
-          
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your answer"
-            value={userAnswer}
-            onChangeText={setUserAnswer}
-            multiline
-            editable={!stepCompleted}
-          />
+      <View style={styles.stepContainer}>
+        <Text style={styles.stepTitle}>
+          Step {currentStepIndex + 1} of {steps.length}
+        </Text>
+        <Text style={styles.instruction}>{currentStep.instruction}</Text>
 
-          <TouchableOpacity 
-            style={[styles.button, stepCompleted && styles.disabledButton]}
-            onPress={handleAnswerSubmit}
-            disabled={loading || stepCompleted}
-          >
-            <Text style={styles.buttonText}>Submit Answer</Text>
-          </TouchableOpacity>
+        {showHint && (
+          <View style={styles.hintContainer}>
+            <Text style={styles.hintText}>{currentStep.explanation}</Text>
+          </View>
+        )}
 
-          <TouchableOpacity 
+        <TextInput
+          style={styles.input}
+          value={userAnswer}
+          onChangeText={setUserAnswer}
+          placeholder="Enter your answer"
+          placeholderTextColor="#999"
+        />
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
             style={[styles.button, styles.hintButton]}
-            onPress={toggleHint}
+            onPress={() => setShowHint(!showHint)}
           >
             <Text style={styles.buttonText}>
               {showHint ? 'Hide Hint' : 'Show Hint'}
             </Text>
           </TouchableOpacity>
 
-          {showHint && (
-            <View style={styles.hintContainer}>
-              <Text style={styles.hintText}>{currentStep.hint}</Text>
-            </View>
-          )}
-
-          {loading && (
-            <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" color="#007AFF" />
-              <Text style={styles.loadingText}>Checking answer...</Text>
-            </View>
-          )}
+          <TouchableOpacity
+            style={[styles.button, styles.submitButton]}
+            onPress={handleAnswerSubmit}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color="#FFFFFF" />
+            ) : (
+              <Text style={styles.buttonText}>Submit</Text>
+            )}
+          </TouchableOpacity>
         </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F9F9F9',
   },
-  scrollContent: {
-    padding: 20,
-    flexGrow: 1,
+  errorText: {
+    fontSize: 16,
+    color: '#FF3B30',
+    textAlign: 'center',
+    marginTop: 20,
   },
   problemContainer: {
-    marginBottom: 20,
-    padding: 15,
-    backgroundColor: '#f8f9fa',
+    padding: 20,
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#e9ecef',
+    margin: 20,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  label: {
-    fontSize: 16,
+  problemTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#495057',
+    marginBottom: 10,
+    color: '#333',
   },
   problemText: {
-    fontSize: 18,
-    color: '#212529',
+    fontSize: 16,
+    color: '#666',
+    lineHeight: 24,
   },
   stepContainer: {
-    marginBottom: 20,
+    padding: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    margin: 20,
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  stepTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#666',
+    marginBottom: 15,
   },
   instruction: {
     fontSize: 16,
-    marginBottom: 15,
-    color: '#495057',
+    color: '#333',
+    marginBottom: 20,
     lineHeight: 24,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 15,
-    borderRadius: 12,
-    marginBottom: 15,
-    minHeight: 100,
-    backgroundColor: '#f9f9f9',
-    fontSize: 16,
-    textAlignVertical: 'top',
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  hintButton: {
-    backgroundColor: '#5856D6',
-  },
   hintContainer: {
+    backgroundColor: '#F0F9FF',
     padding: 15,
-    backgroundColor: '#e9ecef',
-    borderRadius: 12,
-    marginTop: 10,
+    borderRadius: 8,
+    marginBottom: 20,
   },
   hintText: {
     fontSize: 14,
-    color: '#495057',
+    color: '#0A84FF',
+    lineHeight: 20,
   },
-  loadingContainer: {
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  loadingText: {
-    marginTop: 10,
-    color: '#666',
+  input: {
+    borderWidth: 1,
+    borderColor: '#DDD',
+    borderRadius: 8,
+    padding: 12,
     fontSize: 16,
+    marginBottom: 20,
+    color: '#333',
   },
-  disabledButton: {
-    backgroundColor: '#ccc',
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  button: {
+    flex: 1,
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  hintButton: {
+    backgroundColor: '#E5E5EA',
+  },
+  submitButton: {
+    backgroundColor: '#007AFF',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

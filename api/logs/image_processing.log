@@ -1,1 +1,112 @@
 2025-02-21 14:35:38,360 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 15:25:24,219 - image_processor - INFO - Processing image: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=2296x4080 at 0x7B017D42E180> in problem mode
+2025-02-21 15:25:24,224 - image_processor - ERROR - Image processing error: read
+2025-02-21 15:43:45,806 - image_processor - INFO - Processing image: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=2296x4080 at 0x7B017D368560> in problem mode
+2025-02-21 15:43:45,807 - image_processor - ERROR - Image processing error: read
+2025-02-21 15:48:00,445 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 15:54:48,250 - image_processor - INFO - Processing image: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=2296x4080 at 0x7C611D15DF70> in problem mode
+2025-02-21 15:54:48,250 - image_processor - ERROR - Image processing error: read
+2025-02-21 15:55:23,299 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 15:56:04,289 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 15:56:04,289 - image_processor - INFO - Original image size: (2296, 4080)
+2025-02-21 15:56:04,416 - image_processor - INFO - Resized image to: (225, 400)
+2025-02-21 15:56:04,418 - image_processor - INFO - Image converted and encoded
+2025-02-21 15:56:04,418 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 15:56:06,191 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+*   **Problem Text:** 2(x + 5) = 7x - 23
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for x.
+2025-02-21 15:56:06,192 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(x + 5) = 7x - 23 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 16:02:14,207 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 16:03:19,329 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 16:03:19,329 - image_processor - INFO - Original image size: (2012, 372)
+2025-02-21 16:03:19,341 - image_processor - INFO - Resized image to: (400, 73)
+2025-02-21 16:03:19,342 - image_processor - INFO - Image converted and encoded
+2025-02-21 16:03:19,342 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 16:03:20,683 - image_processor - INFO - Raw API response: **Problem Extraction**
+
+*   **Problem Text:** 2(x + 5) = 7x - 23
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for x.
+2025-02-21 16:03:20,684 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(x + 5) = 7x - 23 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 16:04:41,903 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 16:04:41,903 - image_processor - INFO - Original image size: (1836, 380)
+2025-02-21 16:04:41,914 - image_processor - INFO - Resized image to: (400, 82)
+2025-02-21 16:04:41,915 - image_processor - INFO - Image converted and encoded
+2025-02-21 16:04:41,915 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 16:04:43,133 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+* **Problem Text:** 2(x + 5) = 7x - 23
+* **Problem Type:** Linear Equation
+* **Additional Context:** Solve for x.
+2025-02-21 16:04:43,133 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(x + 5) = 7x - 23 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 16:05:06,204 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 16:05:06,204 - image_processor - INFO - Original image size: (1991, 1907)
+2025-02-21 16:05:06,259 - image_processor - INFO - Resized image to: (400, 383)
+2025-02-21 16:05:06,260 - image_processor - INFO - Image converted and encoded
+2025-02-21 16:05:06,260 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 16:05:07,758 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+*   **Problem Text:** 2(n + 5) = 7n - 23
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n.
+2025-02-21 16:05:07,759 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 5) = 7n - 23 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 16:05:55,357 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 16:05:55,357 - image_processor - INFO - Original image size: (1991, 1907)
+2025-02-21 16:05:55,424 - image_processor - INFO - Resized image to: (400, 383)
+2025-02-21 16:05:55,424 - image_processor - INFO - Image converted and encoded
+2025-02-21 16:05:55,424 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 16:05:57,550 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+*   **Problem Text:** 2(n + 5) = 7n - 23
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n.
+2025-02-21 16:05:57,550 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 5) = 7n - 23 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 16:07:09,660 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 16:07:09,661 - image_processor - INFO - Original image size: (1991, 1907)
+2025-02-21 16:07:09,738 - image_processor - INFO - Resized image to: (400, 383)
+2025-02-21 16:07:09,739 - image_processor - INFO - Image converted and encoded
+2025-02-21 16:07:09,739 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 16:07:11,483 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+*   **Problem Text:** 2(n + 5) = 7n - 23
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n.
+2025-02-21 16:07:11,483 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 5) = 7n - 23 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
