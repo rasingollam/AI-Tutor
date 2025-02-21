@@ -122,4 +122,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [FastAPI](https://fastapi.tiangolo.com/) for backend framework
 
 ---
-Built with ❤️ by Sentinel Systems
+Built with ❤️ by Jivita.
