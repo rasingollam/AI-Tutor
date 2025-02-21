@@ -1,3 +1,93 @@
-venv/
+# Python Backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 .env
-mobile/node_modules
+.venv
+venv/
+ENV/
+.pytest_cache/
+api/logs/
+.coverage
+htmlcov/
+
+# React Native / Expo
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.DS_Store
+*.pem
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+tmp/
+
+# Environment files
+.env*
+!.env.example
+
+# Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Build files
+*.apk
+*.aab
+*.ipa
+*.app
