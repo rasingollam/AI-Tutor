@@ -159,16 +159,67 @@ async def process_combined_problem(
         )
 
 @app.post("/validate-answer")
-async def validate_answer(step_data: str = Form(...), answer: str = Form(...)):
+async def validate_answer(
+    step_data: str = Form(...),
+    answer: str = Form(None),
+    file: UploadFile = None
+):
     try:
         step_data_dict = json.loads(step_data)
+        
+        # Process image if provided
+        answer_text = answer or ""
+        if file:
+            try:
+                contents = await file.read()
+                image = Image.open(BytesIO(contents))
+                
+                # Save image temporarily
+                temp_path = "temp_answer.jpg"
+                image.save(temp_path)
+                
+                try:
+                    # Extract answer from image
+                    answer_data = image_processor.process_image(temp_path, mode="answer")
+                    if answer_data and isinstance(answer_data, dict):
+                        # Extract the answer text from the processed image
+                        if 'answer_text' in answer_data:
+                            extracted_text = answer_data['answer_text']
+                            # Clean up the extracted text
+                            if isinstance(extracted_text, str):
+                                # Remove any leading/trailing colons and whitespace
+                                extracted_text = extracted_text.strip(': ')
+                                # Split by commas and take the last equation if multiple are present
+                                equations = [eq.strip() for eq in extracted_text.split(',')]
+                                answer_text = equations[-1]  # Take the last equation as it's likely the final answer
+                            else:
+                                answer_text = str(extracted_text)
+                finally:
+                    # Clean up temp file
+                    if os.path.exists(temp_path):
+                        os.remove(temp_path)
+            except Exception as img_error:
+                print(f"Error processing image: {str(img_error)}")
+                # Don't fail completely on image processing error
+                answer_text = "Error processing image"
+        
+        if not answer_text:
+            raise HTTPException(
+                status_code=400,
+                detail="No answer provided in either text or image"
+            )
+            
+        print(f"Validating answer - Expected: {step_data_dict['expected_answer']}, Got: {answer_text}")
         result = answer_validator.validate_answer(
             step_instruction=step_data_dict["instruction"],
             expected_answer=step_data_dict["expected_answer"],
-            user_answer=answer
+            user_answer=answer_text
         )
         return {"success": True, "validation": result}
+    except HTTPException:
+        raise
     except Exception as e:
+        print(f"Error in validate_answer: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":

@@ -8,13 +8,17 @@ import {
   Alert,
   ScrollView,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import { validateAnswer } from '../services/api';
+import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TutorScreen({ route, navigation }) {
   const { steps = [], problem = '' } = route.params || {};
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -34,13 +38,70 @@ export default function TutorScreen({ route, navigation }) {
     }
   }, [steps, navigation]);
 
+  const pickImage = async () => {
+    console.log('Starting image picker...');
+    
+    // Request permission
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    console.log('Image picker permission status:', status);
+    
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Please grant permission to access your photos.');
+      return;
+    }
+
+    console.log('Launching image picker...');
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log('Image picker result:', result);
+
+    if (!result.canceled && result.assets && result.assets[0]) {
+      console.log('Image selected:', result.assets[0].uri);
+      setSelectedImage(result.assets[0].uri);
+    }
+  };
+
+  const takePhoto = async () => {
+    console.log('Starting camera...');
+    
+    // Request camera permission
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    console.log('Camera permission status:', status);
+    
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Please grant permission to use the camera.');
+      return;
+    }
+
+    console.log('Launching camera...');
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log('Camera result:', result);
+
+    if (!result.canceled && result.assets && result.assets[0]) {
+      console.log('Photo taken:', result.assets[0].uri);
+      setSelectedImage(result.assets[0].uri);
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+  };
+
   // Get current step safely
   const currentStep = steps[currentStepIndex] || {};
   const isLastStep = currentStepIndex === steps.length - 1;
 
   const handleAnswerSubmit = async () => {
-    if (!userAnswer.trim()) {
-      Alert.alert('Error', 'Please enter an answer');
+    if (!userAnswer.trim() && !selectedImage) {
+      Alert.alert('Error', 'Please enter an answer or select an image');
       return;
     }
 
@@ -53,7 +114,7 @@ export default function TutorScreen({ route, navigation }) {
     setLoading(true);
     try {
       console.log('Validating answer for step:', currentStep);
-      const validation = await validateAnswer(currentStep, userAnswer.trim());
+      const validation = await validateAnswer(currentStep, userAnswer.trim(), selectedImage);
       console.log('Validation result:', validation);
 
       if (validation.success && validation.validation.is_correct) {
@@ -67,6 +128,7 @@ export default function TutorScreen({ route, navigation }) {
               if (!isLastStep) {
                 setCurrentStepIndex(prev => prev + 1);
                 setUserAnswer('');
+                setSelectedImage(null);
                 setShowHint(false);
               } else {
                 Alert.alert(
@@ -92,6 +154,7 @@ export default function TutorScreen({ route, navigation }) {
                 if (!isLastStep) {
                   setCurrentStepIndex(prev => prev + 1);
                   setUserAnswer('');
+                  setSelectedImage(null);
                   setShowHint(false);
                   setAttempts(0);
                 } else {
@@ -101,15 +164,17 @@ export default function TutorScreen({ route, navigation }) {
             }]
           );
         } else {
+          // Show specific error message if available
+          const errorMessage = validation.error || 'Incorrect answer. Please try again.';
           Alert.alert(
             'Incorrect',
-            `Try again! You have ${maxAttempts - newAttempts} attempts remaining.`
+            `${errorMessage}\nYou have ${maxAttempts - newAttempts} attempts remaining.`
           );
         }
       }
     } catch (error) {
       console.error('Error validating answer:', error);
-      Alert.alert('Error', 'Failed to validate answer');
+      Alert.alert('Error', 'Failed to validate answer. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -142,20 +207,52 @@ export default function TutorScreen({ route, navigation }) {
           </View>
         )}
 
-        <TextInput
-          style={styles.input}
-          value={userAnswer}
-          onChangeText={setUserAnswer}
-          placeholder="Enter your answer"
-          placeholderTextColor="#999"
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={userAnswer}
+            onChangeText={setUserAnswer}
+            placeholder="Enter your answer"
+            placeholderTextColor="#999"
+            multiline
+          />
+          <View style={styles.imageButtonsContainer}>
+            <TouchableOpacity 
+              style={styles.imageButton} 
+              onPress={takePhoto}
+            >
+              <Ionicons name="camera-outline" size={24} color="#007AFF" />
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.imageButton} 
+              onPress={pickImage}
+            >
+              <Ionicons name="image-outline" size={24} color="#007AFF" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {selectedImage && (
+          <View style={styles.imagePreviewContainer}>
+            <Image
+              source={{ uri: selectedImage }}
+              style={styles.imagePreview}
+            />
+            <TouchableOpacity 
+              style={styles.removeImageButton}
+              onPress={removeImage}
+            >
+              <Ionicons name="close-circle" size={24} color="#FF3B30" />
+            </TouchableOpacity>
+          </View>
+        )}
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[styles.button, styles.hintButton]}
             onPress={() => setShowHint(!showHint)}
           >
-            <Text style={styles.buttonText}>
+            <Text style={[styles.buttonText, { color: '#007AFF' }]}>
               {showHint ? 'Hide Hint' : 'Show Hint'}
             </Text>
           </TouchableOpacity>
@@ -235,6 +332,51 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     lineHeight: 24,
   },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#DDD',
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
+  },
+  input: {
+    flex: 1,
+    padding: 12,
+    fontSize: 16,
+    color: '#333',
+    minHeight: 80,
+  },
+  imageButtonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  imageButton: {
+    padding: 12,
+    alignSelf: 'flex-start',
+  },
+  imagePreviewContainer: {
+    marginBottom: 20,
+    borderRadius: 8,
+    overflow: 'hidden',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#DDD',
+  },
+  imagePreview: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+  },
+  removeImageButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 4,
+  },
   hintContainer: {
     backgroundColor: '#F0F9FF',
     padding: 15,
@@ -245,15 +387,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#0A84FF',
     lineHeight: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#DDD',
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
-    marginBottom: 20,
-    color: '#333',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -267,7 +400,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   hintButton: {
-    backgroundColor: '#E5E5EA',
+    backgroundColor: '#F2F2F7',
   },
   submitButton: {
     backgroundColor: '#007AFF',
