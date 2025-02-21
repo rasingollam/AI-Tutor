@@ -1,0 +1,701 @@
+2025-02-21 12:35:28,590 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:35:28,625 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:37:30,098 - image_processor - INFO - Processing image: /home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:37:30,099 - image_processor - DEBUG - Converting local file to base64
+2025-02-21 12:37:30,099 - image_processor - DEBUG - Using prompt for mode: problem
+2025-02-21 12:37:30,099 - image_processor - DEBUG - Sending request to Groq API
+2025-02-21 12:37:32,048 - image_processor - DEBUG - Raw API response: The image contains a handwritten math problem. The problem is:
+
+2(2x + 5) = 7x - 23
+
+This is a linear equation, specifically a quadratic equation in disguise. The problem type is a quadratic equation.
+
+To convert the handwritten text into a clear digital format, I will transcribe it as follows:
+
+{
+    "problem_text": "2(2x + 5) = 7x - 23",
+    "problem_type": "Quadratic Equation",
+    "additional_context": "No additional context"
+}
+2025-02-21 12:37:32,048 - image_processor - INFO - Successfully extracted content: {'problem_text': '2(2x + 5) = 7x - 23', 'problem_type': 'Quadratic Equation', 'additional_context': 'No additional context'}
+2025-02-21 12:39:23,890 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:39:23,890 - image_processor - DEBUG - Converting local file to base64
+2025-02-21 12:39:23,891 - image_processor - DEBUG - Using prompt for mode: problem
+2025-02-21 12:39:23,891 - image_processor - DEBUG - Sending request to Groq API
+2025-02-21 12:39:25,770 - image_processor - DEBUG - Raw API response: The image contains a handwritten math problem, which reads: "Solve n for: 2(n+5) = 7n - 23." This is a linear equation problem.
+
+To solve for n, we can start by distributing the 2 on the left side of the equation:
+
+2n + 10 = 7n - 23
+
+Next, we can subtract 2n from both sides to get:
+
+10 = 5n - 23
+
+Then, we can add 23 to both sides to get:
+
+33 = 5n
+
+Finally, we can divide both sides by 5 to solve for n:
+
+n = 33/5
+
+Therefore, the solution to the equation is n = 6.6.
+
+Here is the response in the requested format:
+
+{
+    "problem_text": "2(n+5) = 7n - 23",
+    "problem_type": "Linear Equation",
+    "additional_context": "Solve for n"
+}
+2025-02-21 12:39:25,770 - image_processor - INFO - Successfully extracted content: {'problem_text': '2(n+5) = 7n - 23', 'problem_type': 'Linear Equation', 'additional_context': 'Solve for n'}
+2025-02-21 12:39:37,280 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:39:37,281 - image_processor - DEBUG - Converting local file to base64
+2025-02-21 12:39:37,281 - image_processor - DEBUG - Using prompt for mode: problem
+2025-02-21 12:39:37,281 - image_processor - DEBUG - Sending request to Groq API
+2025-02-21 12:39:39,287 - image_processor - DEBUG - Raw API response: The image contains a handwritten math problem, which reads: "Solve u for: 2(u+5) = 7u - 23." This is a quadratic equation, specifically a linear equation in one variable. The problem asks to solve for the variable "u".
+
+To solve this equation, we can start by expanding the left side using the distributive property:
+
+2(u + 5) = 2u + 10
+
+Now, we can set up the equation as follows:
+
+2u + 10 = 7u - 23
+
+Next, we can subtract 2u from both sides to get:
+
+10 = 5u - 23
+
+Then, we can add 23 to both sides to get:
+
+33 = 5u
+
+Finally, we can divide both sides by 5 to solve for u:
+
+u = 33/5
+
+Therefore, the solution to the equation is u = 6.6.
+
+In summary, the problem is a quadratic equation in one variable, and the solution is u = 6.6.
+
+Here is the response in the requested format:
+
+{
+    "problem_text": "Solve u for: 2(u+5) = 7u - 23",
+    "problem_type": "Quadratic Equation",
+    "additional_context": "The problem asks to solve for the variable u."
+}
+2025-02-21 12:39:39,288 - image_processor - INFO - Successfully extracted content: {'problem_text': 'Solve u for: 2(u+5) = 7u - 23', 'problem_type': 'Quadratic Equation', 'additional_context': 'The problem asks to solve for the variable u.'}
+2025-02-21 12:41:23,141 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:41:23,208 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:41:45,305 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:41:45,305 - image_processor - DEBUG - Converting local file to base64
+2025-02-21 12:41:45,305 - image_processor - DEBUG - Using prompt for mode: problem
+2025-02-21 12:41:45,305 - image_processor - DEBUG - Sending request to Groq API
+2025-02-21 12:41:47,494 - image_processor - DEBUG - Raw API response: **Problem Extraction and Analysis**
+
+**Problem Text:**
+The exact math problem from the image is:
+
+2( n + 5) = 7n - 23
+
+**Problem Type:**
+This is a linear equation problem, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+The problem requires solving for the variable 'n'. The equation involves basic algebraic operations such as multiplication and addition/subtraction. To solve this equation, one would need to isolate the variable 'n' by performing inverse operations on both sides of the equation. 
+
+**JSON Response:**
+
+{
+    "problem_text": "2( n + 5) = 7n - 23",
+    "problem_type": "Linear Equation",
+    "additional_context": "Solve for n"
+}
+2025-02-21 12:41:47,494 - image_processor - INFO - Successfully extracted content: {'problem_text': '2( n + 5) = 7n - 23', 'problem_type': 'Linear Equation', 'additional_context': 'Solve for n'}
+2025-02-21 12:43:00,633 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:43:00,679 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:43:12,190 - image_processor - INFO - Processing image: /home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:43:12,191 - image_processor - DEBUG - Converting local file to base64
+2025-02-21 12:43:12,191 - image_processor - DEBUG - Using prompt for mode: problem
+2025-02-21 12:43:12,191 - image_processor - DEBUG - Sending request to Groq API
+2025-02-21 12:43:14,547 - image_processor - DEBUG - Raw API response: **Problem Extraction and Analysis**
+
+**Problem Text:**
+The exact math problem from the image is:
+
+2(5 + n) = 7n - 23
+
+**Problem Type:**
+This is a linear equation problem, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+The problem requires solving for the variable 'n'. The equation involves basic algebraic operations such as multiplication, addition, and subtraction. To solve this equation, one would typically use techniques like distributing the 2 across the terms inside the parentheses, combining like terms, and isolating the variable 'n' on one side of the equation.
+2025-02-21 12:43:14,547 - image_processor - ERROR - Could not parse JSON from response: **Problem Extraction and Analysis**
+
+**Problem Text:**
+The exact math problem from the image is:
+
+2(5 + n) = 7n - 23
+
+**Problem Type:**
+This is a linear equation problem, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+The problem requires solving for the variable 'n'. The equation involves basic algebraic operations such as multiplication, addition, and subtraction. To solve this equation, one would typically use techniques like distributing the 2 across the terms inside the parentheses, combining like terms, and isolating the variable 'n' on one side of the equation.
+2025-02-21 12:44:25,675 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:44:25,765 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:44:40,539 - image_processor - INFO - Processing image: /home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:44:40,540 - image_processor - DEBUG - Converting local file to base64
+2025-02-21 12:44:40,540 - image_processor - DEBUG - Using prompt for mode: problem
+2025-02-21 12:44:40,540 - image_processor - DEBUG - Sending request to Groq API
+2025-02-21 12:44:43,007 - image_processor - DEBUG - Raw API response: **Problem Extraction and Analysis**
+
+**Problem Text:**
+The exact math problem from the image is:
+
+2(5 + n) = 7n - 23
+
+**Problem Type:**
+This is a linear equation problem, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+The problem requires solving for the variable 'n'. The equation involves basic algebraic operations such as multiplication, addition, and subtraction. To solve this equation, one would typically use techniques like distributing the 2 across the terms inside the parentheses, combining like terms, and isolating the variable 'n' on one side of the equation.
+2025-02-21 12:44:43,007 - image_processor - ERROR - Could not parse JSON from response: **Problem Extraction and Analysis**
+
+**Problem Text:**
+The exact math problem from the image is:
+
+2(5 + n) = 7n - 23
+
+**Problem Type:**
+This is a linear equation problem, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+The problem requires solving for the variable 'n'. The equation involves basic algebraic operations such as multiplication, addition, and subtraction. To solve this equation, one would typically use techniques like distributing the 2 across the terms inside the parentheses, combining like terms, and isolating the variable 'n' on one side of the equation.
+2025-02-21 12:46:24,750 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:46:24,805 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:46:34,505 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:46:35,845 - image_processor - ERROR - Error in _extract_content: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-11b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 9598, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 87, in _extract_content
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 322, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1266, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 958, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-11b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 9598, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2025-02-21 12:47:22,041 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:47:22,070 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:47:25,667 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:47:27,016 - image_processor - ERROR - Error in _extract_content: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-11b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 9598, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 87, in _extract_content
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 322, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1266, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 958, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-11b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 9598, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2025-02-21 12:48:04,945 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:48:05,002 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:48:09,200 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:48:10,604 - image_processor - ERROR - Error in _extract_content: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-90b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 9598, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 87, in _extract_content
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 322, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1266, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 958, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-90b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 9598, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2025-02-21 12:49:11,183 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:49:11,245 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:49:39,921 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:49:41,493 - image_processor - ERROR - Error in _extract_content: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-90b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 8515, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 101, in _extract_content
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 322, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1266, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 958, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.2-90b-vision-preview` in organization `org_01j2zp8z71e7hte24aqxewpjct` service tier `on_demand` on tokens per minute (TPM): Limit 7000, Requested 8515, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2025-02-21 12:50:14,025 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:50:14,118 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:50:18,545 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:50:20,146 - image_processor - DEBUG - Raw vision model response: Unfortunately, the provided text does not contain a math problem. It appears to be a base64 encoded image.
+2025-02-21 12:50:20,146 - image_processor - ERROR - Error in _extract_content: name 'json' is not defined
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 110, in _extract_content
+    raise ValueError("No JSON found in response")
+ValueError: No JSON found in response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 111, in _extract_content
+    except (json.JSONDecodeError, ValueError) as e:
+            ^^^^
+NameError: name 'json' is not defined. Did you forget to import 'json'
+2025-02-21 12:50:46,500 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:50:46,599 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:50:49,856 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:50:51,542 - image_processor - DEBUG - Raw vision model response: Unfortunately, the provided text does not contain a math problem. It appears to be a base64 encoded image.
+2025-02-21 12:50:51,543 - image_processor - ERROR - Could not parse JSON from response: Unfortunately, the provided text does not contain a math problem. It appears to be a base64 encoded image.
+2025-02-21 12:51:24,669 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:51:24,723 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:51:28,947 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:51:29,831 - image_processor - ERROR - Error in _extract_content: Error code: 400 - {'error': {'message': 'prompting with images is incompatible with system messages', 'type': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/image_processor.py", line 104, in _extract_content
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 322, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1266, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 958, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/venv/lib/python3.12/site-packages/groq/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'prompting with images is incompatible with system messages', 'type': 'invalid_request_error'}}
+2025-02-21 12:52:03,072 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:52:03,126 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:52:07,402 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:52:09,256 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+2(5 + n) = 7n - 23
+
+This equation can be solved by first distributing the 2 to the terms inside the parentheses, resulting in:
+
+10 + 2n = 7n - 23
+
+Next, we can add 23 to both sides of the equation to get:
+
+10 + 2n + 23 = 7n - 23 + 23
+
+Simplifying this expression gives us:
+
+33 + 2n = 7n
+
+Subtracting 2n from both sides yields:
+
+33 = 5n
+
+Finally, dividing both sides by 5 results in:
+
+n = 33/5
+
+Therefore, the solution to the equation is n = 33/5.
+
+In JSON format, the math problem and its solution can be represented as follows:
+
+{
+    "problem_text": "2(5 + n) = 7n - 23",
+    "problem_type
+2025-02-21 12:52:09,257 - image_processor - ERROR - Could not parse JSON from response: The math problem in the image is:
+
+2(5 + n) = 7n - 23
+
+This equation can be solved by first distributing the 2 to the terms inside the parentheses, resulting in:
+
+10 + 2n = 7n - 23
+
+Next, we can add 23 to both sides of the equation to get:
+
+10 + 2n + 23 = 7n - 23 + 23
+
+Simplifying this expression gives us:
+
+33 + 2n = 7n
+
+Subtracting 2n from both sides yields:
+
+33 = 5n
+
+Finally, dividing both sides by 5 results in:
+
+n = 33/5
+
+Therefore, the solution to the equation is n = 33/5.
+
+In JSON format, the math problem and its solution can be represented as follows:
+
+{
+    "problem_text": "2(5 + n) = 7n - 23",
+    "problem_type
+2025-02-21 12:54:30,398 - image_processor - INFO - Processing image: modules/image_processing/test_images/2.jpeg in answer mode
+2025-02-21 12:54:32,375 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+10 + 23 = 7x - 2x
+
+This equation can be solved by combining like terms on the right side of the equation. 
+
+7x - 2x = 5x
+
+So, the equation becomes:
+
+10 + 23 = 5x
+
+Combine the constants on the left side of the equation:
+
+33 = 5x
+
+Now, divide both sides by 5 to solve for x:
+
+x = 33 / 5
+
+x = 6.6
+
+Therefore, the solution to the math problem is x = 6.6.
+
+Here is the information in JSON format:
+
+{
+    "problem_text": "10 + 23 = 7x - 2x",
+    "problem_type": "algebraic equation",
+    "additional_context": "The equation can be solved by combining like terms and isolating the variable x."
+}
+2025-02-21 12:57:00,392 - image_processor - INFO - Processing image: modules/image_processing/test_images/2.jpeg in answer mode
+2025-02-21 12:57:02,262 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+10 + 2 * 3 = 7n - 2n
+33 = 5n
+
+This problem involves algebraic equations and requires solving for the variable 'n'. The first equation can be simplified to 16 = 5n, and the second equation is already in a simple form. To solve for 'n', we can divide both sides of the first equation by 5, which gives us n = 16/5. This value of 'n' satisfies both equations.
+
+In JSON format, the problem would be represented as:
+
+{
+    "problem_text": "10 + 2 * 3 = 7n - 2n, 33 = 5n",
+    "problem_type": "Algebraic Equations",
+    "additional_context": "Solve for the variable 'n' in the given equations."
+}
+2025-02-21 12:58:26,205 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 12:58:36,164 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 12:58:37,963 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+2(5 + n) = 7n - 23
+
+This problem can be solved by first distributing the 2 to the terms inside the parentheses, then combining like terms and isolating the variable n.
+
+Here's the solution in JSON format:
+
+{
+    "problem_text": "2(5 + n) = 7n - 23",
+    "problem_type": "linear equation",
+    "additional_context": "This problem requires the student to use algebraic techniques to solve for the value of n."
+}
+2025-02-21 13:02:16,242 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:04:18,657 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:04:20,606 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+2(n+3) = 4n - 2
+
+This equation can be solved by expanding and simplifying both sides. 
+
+First, expand the left side of the equation:
+
+2n + 6 = 4n - 2
+
+Next, subtract 2n from both sides to get:
+
+6 = 2n - 2
+
+Then, add 2 to both sides to get:
+
+8 = 2n
+
+Finally, divide both sides by 2 to solve for n:
+
+n = 4
+
+Therefore, the solution to the equation is n = 4.
+
+In JSON format, the math problem and its solution can be represented as follows:
+
+{
+    "problem_text": "2(n+3) = 4n - 2",
+    "problem_type": "linear equation",
+    "additional_context": "solve for n"
+}
+2025-02-21 13:05:25,439 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:05:25,439 - image_processor - INFO - Processing image: modules/image_processing/test_images/2.jpeg in answer mode
+2025-02-21 13:05:27,161 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+Solve n for:
+
+2(n+3) = 4n - 2
+
+2n + 6 = 4n - 2
+
+This can be represented in JSON format as follows:
+
+{
+    "problem_text": "2(n+3) = 4n - 2",
+    "problem_type": "algebraic equation",
+    "additional_context": "solve for n"
+}
+2025-02-21 13:07:26,122 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:07:26,123 - image_processor - INFO - Processing image: modules/image_processing/test_images/2.jpeg in answer mode
+2025-02-21 13:07:27,725 - image_processor - DEBUG - Raw vision model response: The math problem in the image is:
+
+2(n+3) = 4n - 2
+
+This can be represented in JSON format as follows:
+
+{
+    "problem_text": "2(n+3) = 4n - 2",
+    "problem_type": "algebraic equation",
+    "additional_context": "solving for n"
+}
+2025-02-21 13:08:04,522 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:08:15,688 - image_processor - INFO - Processing image: /home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:08:15,719 - image_processor - ERROR - Image processing error: 'bytes' object has no attribute 'convert'
+2025-02-21 13:08:25,647 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:08:25,659 - image_processor - ERROR - Image processing error: 'bytes' object has no attribute 'convert'
+2025-02-21 13:08:52,331 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:09:00,517 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:09:02,037 - image_processor - DEBUG - Raw API response: **Math Problem Extraction and Analysis**
+
+**Problem Text:**
+The complete math problem as written is:
+
+2(n+3) = 4n - 2
+
+**Problem Type:**
+This problem is a linear equation, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+There are no additional instructions or context provided in the image. The problem is presented in a straightforward manner, with the equation to be solved.
+2025-02-21 13:09:02,037 - image_processor - ERROR - Image processing error: No JSON found in response
+2025-02-21 13:11:07,215 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:11:18,296 - image_processor - INFO - Processing image: /home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:11:18,319 - image_processor - INFO - Using prompt: Extract the math problem from this image. Respond in JSON format:
+        {
+            "problem_text": "The complete math problem as written",
+            "problem_type": "The type of math problem (e.g. linear_equation, quadratic, word_problem, etc)",
+            "additional_context": "Any additional context or instructions shown"
+        }
+2025-02-21 13:11:19,750 - image_processor - INFO - Raw API response: **Math Problem Extraction and Analysis**
+
+**Problem Text:**
+The complete math problem as written is:
+
+2(n+3) = 4n - 2
+
+**Problem Type:**
+This problem is a linear equation, specifically an algebraic equation involving variables and constants.
+
+**Additional Context:**
+There are no additional instructions or context provided in the image beyond the equation itself. The equation appears to be a standalone problem for solving.
+2025-02-21 13:14:35,803 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:14:41,999 - image_processor - INFO - Processing image: /home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:14:42,014 - image_processor - INFO - Original image size: (1148, 461)
+2025-02-21 13:14:42,030 - image_processor - INFO - Resized image to: (400, 160)
+2025-02-21 13:14:42,032 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:14:42,032 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 13:14:43,345 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+*   **Problem Text:** 2( n + 3 ) = 4n - 2
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n
+2025-02-21 13:14:43,346 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '**Math Problem Extraction**\n\n*   **Problem Text:** 2( n + 3 ) = 4n - 2\n*   **Problem Type:** Linear Equation\n*   **Additional Context:** Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 13:14:58,028 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:14:58,028 - image_processor - INFO - Processing image: modules/image_processing/test_images/2.jpeg in answer mode
+2025-02-21 13:14:58,029 - image_processor - INFO - Original image size: (1148, 534)
+2025-02-21 13:14:58,047 - image_processor - INFO - Resized image to: (400, 186)
+2025-02-21 13:14:58,048 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:14:58,048 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 13:14:59,789 - image_processor - INFO - Raw API response: **Answer:**
+
+{
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2",
+    "explanation": "The image shows two equations being solved for n. The first equation is 2(n+3) = 4n - 2 and the second equation is 2n + 6 = 4n - 2.",
+    "confidence": 0.95
+}
+2025-02-21 13:14:59,790 - image_processor - INFO - Extracted JSON string: {
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2",
+    "explanation": "The image shows two equations being solved for n. The first equation is 2(n+3) = 4n - 2 and the second equation is 2n + 6 = 4n - 2.",
+    "confidence": 0.95
+}
+2025-02-21 13:14:59,790 - image_processor - INFO - Extracted content: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2', 'explanation': 'The image shows two equations being solved for n. The first equation is 2(n+3) = 4n - 2 and the second equation is 2n + 6 = 4n - 2.', 'confidence': 0.95}
+2025-02-21 13:17:34,408 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:17:34,409 - image_processor - INFO - Processing image: modules/image_processing/test_images/3.jpeg in answer mode
+2025-02-21 13:17:34,410 - image_processor - INFO - Original image size: (1148, 989)
+2025-02-21 13:17:34,453 - image_processor - INFO - Resized image to: (400, 344)
+2025-02-21 13:17:34,454 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:17:34,454 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 13:17:36,464 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -4n + 6 = -2
+* **Explanation**: The image shows a series of mathematical equations and their solutions. The first equation is 2(n+3) = 4n - 2, which is solved by expanding the left side to get 2n + 6 = 4n - 2. This equation is then simplified by subtracting 2n from both sides to get -4n + 6 = -2.
+* **Confidence**: 0.95
+2025-02-21 13:17:36,464 - image_processor - INFO - Extracted content (no JSON): {'answer_text': '**Answer Extraction**\n\n* **Answer Text**: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -4n + 6 = -2\n* **Explanation**: The image shows a series of mathematical equations and their solutions. The first equation is 2(n+3) = 4n - 2, which is solved by expanding the left side to get 2n + 6 = 4n - 2. This equation is then simplified by subtracting 2n from both sides to get -4n + 6 = -2.\n* **Confidence**: 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:18:48,406 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:18:57,767 - image_processor - INFO - Processing image: modules/image_processing/test_images/1.jpeg in problem mode
+2025-02-21 13:18:57,779 - image_processor - INFO - Original image size: (1148, 461)
+2025-02-21 13:18:57,800 - image_processor - INFO - Resized image to: (400, 160)
+2025-02-21 13:18:57,801 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:18:57,801 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 13:18:59,002 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+* **Problem Text:** 2( n + 3 ) = 4n - 2
+* **Problem Type:** Linear Equation
+* **Additional Context:** Solve for n
+2025-02-21 13:18:59,003 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2( n + 3 ) = 4n - 2 Linear Equation Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 13:19:37,783 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:19:37,783 - image_processor - INFO - Processing image: modules/image_processing/test_images/2.jpeg in answer mode
+2025-02-21 13:19:37,784 - image_processor - INFO - Original image size: (1148, 534)
+2025-02-21 13:19:37,803 - image_processor - INFO - Resized image to: (400, 186)
+2025-02-21 13:19:37,804 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:19:37,804 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 13:19:39,651 - image_processor - INFO - Raw API response: **Answer:**
+
+{
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2",
+    "explanation": "The image shows two equations being solved for n. The first equation is 2(n+3) = 4n - 2 and the second equation is 2n + 6 = 4n - 2.",
+    "confidence": 0.95
+}
+2025-02-21 13:19:39,651 - image_processor - INFO - Extracted JSON string: {
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2",
+    "explanation": "The image shows two equations being solved for n. The first equation is 2(n+3) = 4n - 2 and the second equation is 2n + 6 = 4n - 2.",
+    "confidence": 0.95
+}
+2025-02-21 13:19:39,651 - image_processor - INFO - Extracted content: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2', 'explanation': 'The image shows two equations being solved for n. The first equation is 2(n+3) = 4n - 2 and the second equation is 2n + 6 = 4n - 2.', 'confidence': 0.95}
+2025-02-21 13:19:49,754 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:19:49,754 - image_processor - INFO - Processing image: modules/image_processing/test_images/3.jpeg in answer mode
+2025-02-21 13:19:49,755 - image_processor - INFO - Original image size: (1148, 989)
+2025-02-21 13:19:49,786 - image_processor - INFO - Resized image to: (400, 344)
+2025-02-21 13:19:49,787 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:19:49,787 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 13:19:52,247 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -4n + 6 = -2
+* **Explanation**: The image shows a series of mathematical equations and their solutions. The first equation is 2(n+3) = 4n - 2, which is solved by expanding the left side to get 2n + 6 = 4n - 2. This equation is then rearranged to isolate the variable n, resulting in -4n + 6 = -2.
+* **Confidence**: 0.95
+2025-02-21 13:19:52,248 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -4n + 6 = -2 : The image shows a series of mathematical equations and their solutions. The first equation is 2(n+3) = 4n - 2, which is solved by expanding the left side to get 2n + 6 = 4n - 2. This equation is then rearranged to isolate the variable n, resulting in -4n + 6 = -2. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:23:36,243 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:23:36,243 - image_processor - INFO - Processing image: modules/image_processing/test_images/4.jpeg in answer mode
+2025-02-21 13:23:36,244 - image_processor - INFO - Original image size: (1148, 923)
+2025-02-21 13:23:36,286 - image_processor - INFO - Resized image to: (400, 321)
+2025-02-21 13:23:36,287 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:23:36,287 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 13:23:38,450 - image_processor - INFO - Raw API response: **Answer:**
+
+{
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2",
+    "explanation": "The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.",
+    "confidence": 0.95
+}
+2025-02-21 13:23:38,450 - image_processor - INFO - Extracted JSON string: {
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2",
+    "explanation": "The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.",
+    "confidence": 0.95
+}
+2025-02-21 13:23:38,451 - image_processor - INFO - Extracted content: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2', 'explanation': 'The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.', 'confidence': 0.95}
+2025-02-21 13:24:19,871 - image_processor - INFO - ImageProcessor initialized
+2025-02-21 13:24:19,871 - image_processor - INFO - Processing image: modules/image_processing/test_images/4.jpeg in answer mode
+2025-02-21 13:24:19,871 - image_processor - INFO - Original image size: (1148, 923)
+2025-02-21 13:24:19,916 - image_processor - INFO - Resized image to: (400, 321)
+2025-02-21 13:24:19,917 - image_processor - INFO - Image converted and encoded
+2025-02-21 13:24:19,917 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 13:24:21,968 - image_processor - INFO - Raw API response: **Answer:**
+
+{
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2",
+    "explanation": "The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.",
+    "confidence": 0.95
+}
+2025-02-21 13:24:21,968 - image_processor - INFO - Extracted JSON string: {
+    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2",
+    "explanation": "The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.",
+    "confidence": 0.95
+}
+2025-02-21 13:24:21,969 - image_processor - INFO - Extracted content: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2', 'explanation': 'The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.', 'confidence': 0.95}

@@ -2,12 +2,14 @@ import os
 import json
 from groq import Groq
 from typing import Dict, List
+from utils.logging_utils import validation_logger as logger
 
 class ScaffoldingEngine:
     """Generates adaptive learning paths based on problem understanding and knowledge assessment."""
     
     def __init__(self):
         self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        logger.info("ScaffoldingEngine initialized")
         
         self.scaffolding_prompt = """Create a step-by-step solution guide for this math problem.
 
@@ -43,37 +45,124 @@ Example format (but create steps for the GIVEN problem):
     ]
 }}"""
 
-    def generate_scaffolding(self, 
-                            concept: str,
-                            problem_analysis: str,
-                            knowledge_assessment: str,
-                            problem_text: str) -> Dict:
-        """Generate scaffolding steps for the given problem."""
+    def generate_solution_steps(self, problem: str) -> List[Dict]:
+        """Generate solution steps for a problem."""
+        logger.info(f"Generating solution steps for: {problem}")
+        
         try:
-            response = self.client.chat.completions.create(
-                model="mixtral-8x7b-32768",
-                messages=[
-                    {
-                        "role": "system",
-                        "content": self.scaffolding_prompt.format(
-                            concept=concept,
-                            problem_analysis=problem_analysis, 
-                            knowledge_assessment=knowledge_assessment,
-                            problem_text=problem_text
-                        )
-                    }
-                ],
-                temperature=0.1,
-                max_tokens=1000,
+            # Create a basic analysis for the problem
+            analysis = {
+                "problem_type": "linear_equation",  # Default to linear equation
+                "key_concepts": ["equation_solving"],
+                "complexity": "basic"
+            }
+            
+            # Generate scaffolding
+            scaffolding = self.generate_scaffolding(
+                concept=analysis["problem_type"],
+                problem_analysis=json.dumps(analysis),
+                knowledge_assessment=json.dumps({"knowledge_gaps": []}),
+                problem_text=problem
             )
             
-            # Extract the JSON response
-            json_str = response.choices[0].message.content
-            return json.loads(json_str)
-
+            if isinstance(scaffolding, dict) and "steps" in scaffolding:
+                logger.info(f"Generated {len(scaffolding['steps'])} solution steps")
+                return scaffolding["steps"]
+            else:
+                logger.error(f"Invalid scaffolding format: {scaffolding}")
+                # Return default steps if something goes wrong
+                return [
+                    {
+                        "instruction": "First, let's understand what we're solving for.",
+                        "expected_answer": problem,
+                        "hint": "Read the problem carefully and identify the variable.",
+                        "explanation": "Understanding the problem is the first step to solving it."
+                    }
+                ]
+                
         except Exception as e:
-            print(f"Debug - Unexpected error: {str(e)}")
-            return None
+            logger.error(f"Error generating solution steps: {str(e)}", exc_info=True)
+            # Return a simple error step
+            return [
+                {
+                    "instruction": "There was an error generating steps. Let's try a simpler approach.",
+                    "expected_answer": problem,
+                    "hint": "Start by writing out what you know.",
+                    "explanation": "Sometimes breaking down a problem helps us solve it."
+                }
+            ]
+
+    def generate_scaffolding(self, 
+                           concept: str,
+                           problem_analysis: str,
+                           knowledge_assessment: str,
+                           problem_text: str) -> Dict:
+        """Generate scaffolding steps for the given problem."""
+        logger.debug(f"Generating scaffolding for concept: {concept}")
+        try:
+            prompt = self.scaffolding_prompt.format(
+                concept=concept,
+                problem_analysis=problem_analysis,
+                knowledge_assessment=knowledge_assessment,
+                problem_text=problem_text
+            )
+            
+            # Add explicit JSON request to prompt
+            prompt += "\n\nRespond with a valid JSON object containing the steps."
+            
+            response = self.client.chat.completions.create(
+                model="mixtral-8x7b-32768",
+                messages=[{
+                    "role": "system",
+                    "content": prompt
+                }],
+                temperature=0.1,
+                max_tokens=1000
+            )
+            
+            result = response.choices[0].message.content.strip()
+            logger.debug(f"Raw scaffolding response: {result}")
+            
+            # Extract JSON from response
+            try:
+                start = result.find('{')
+                end = result.rfind('}') + 1
+                if start >= 0 and end > start:
+                    json_str = result[start:end]
+                    return json.loads(json_str)
+            except (json.JSONDecodeError, ValueError) as e:
+                logger.error(f"Invalid JSON in scaffolding response: {result}")
+                
+            # If we get here, return default steps
+            return {
+                "steps": [
+                    {
+                        "instruction": "Let's solve this step by step.",
+                        "expected_answer": problem_text,
+                        "hint": "Start by identifying what we're solving for.",
+                        "explanation": "Breaking down the problem helps us solve it."
+                    },
+                    {
+                        "instruction": "Now, let's solve the equation.",
+                        "expected_answer": problem_text,
+                        "hint": "Follow the order of operations (PEMDAS).",
+                        "explanation": "Solving equations requires following mathematical rules."
+                    }
+                ]
+            }
+                
+        except Exception as e:
+            logger.error(f"Error in generate_scaffolding: {str(e)}", exc_info=True)
+            return {
+                "steps": [
+                    {
+                        "instruction": "Let's solve this step by step.",
+                        "expected_answer": problem_text,
+                        "hint": "Start by identifying what we're solving for.",
+                        "explanation": "Breaking down the problem helps us solve it."
+                    }
+                ]
+            }
 
     def adapt_path(self, progress_data: Dict) -> Dict:
         """Adjust learning path based on student progress."""

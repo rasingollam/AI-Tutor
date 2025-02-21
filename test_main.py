@@ -1,168 +1,183 @@
 import os
 import json
 from datetime import datetime
-from modules.problem_understanding.analyzer import ProblemUnderstandingEngine
+from modules.problem_understanding.analyzer import ProblemAnalyzer
 from modules.knowledge_assessment.diagnoser import KnowledgeAssessor
 from modules.scaffolding.engine import ScaffoldingEngine
 from modules.feedback.feedback_engine import FeedbackEngine
 from modules.knowledge_reinforcement.reinforcer import KnowledgeReinforcer
+from modules.image_processing.image_processor import ImageProcessor
 from utils.validation import AnswerValidator
+import logging
+
+logger = logging.getLogger(__name__)
 
 class AITutor:
     def __init__(self):
-        self.problem_analyzer = ProblemUnderstandingEngine()
+        self.analyzer = ProblemAnalyzer()
         self.knowledge_assessor = KnowledgeAssessor()
         self.scaffolding_engine = ScaffoldingEngine()
         self.feedback_engine = FeedbackEngine()
-        self.reinforcer = KnowledgeReinforcer()
         self.validator = AnswerValidator()
+        self.image_processor = ImageProcessor()
+        self.reinforcer = KnowledgeReinforcer()
         self.current_step = 0
         self.total_steps = 0
         self.solution_steps = []
         self.max_attempts = 3
+
+    def process_user_input(self, user_input: str) -> str:
+        """Process user input which can be text or image."""
+        try:
+            # Check if input is an image path
+            if os.path.exists(user_input):
+                print("\nProcessing image input...")
+                result = self.image_processor.process_image(user_input, mode="problem")
+                
+                if result and result.get("problem_text"):
+                    problem = result["problem_text"]
+                    print(f"Extracted problem: {problem}")
+                    if result.get("problem_type"):
+                        print(f"Problem type: {result['problem_type']}")
+                    if result.get("additional_context"):
+                        print(f"Additional context: {result['additional_context']}")
+                    return problem
+                else:
+                    print("Could not extract a valid problem from the image.")
+                    return ""
+            else:
+                # Direct text input
+                return user_input.strip()
+                
+        except Exception as e:
+            logger.error(f"Error processing user input: {str(e)}", exc_info=True)
+            print(f"\nI had trouble processing that input. Please try again.")
+            return ""
 
     def start_tutoring_session(self):
         print(f"\n{'='*50}")
         print(f"Welcome to AI Math Tutor!")
         print(f"{'='*50}")
         print("I'm here to help you solve math problems step by step.")
-        print("Type 'exit' to end the session.")
+        print("Type 'exit' or 'quit' to end the session.")
         
         while True:
             print("\nWhat math problem would you like help with?")
-            problem = input("> ").strip()
+            print("(You can type a problem or provide an image path/URL)")
+            user_input = input("> ").strip()
             
-            if problem.lower() == 'exit':
+            if user_input.lower() in ['exit', 'quit']:
                 print("\nThank you for learning with AI Math Tutor! Goodbye!")
                 break
+                
+            problem = self.process_user_input(user_input)
+            if not problem:
+                continue
             
             self.guide_problem_solution(problem)
     
     def guide_problem_solution(self, problem: str):
         try:
             # Step 1: Analyze the problem
-            analysis = self.problem_analyzer.analyze_problem(problem)
+            analysis = self.analyzer.analyze_problem(problem)
             
-            print(f"\nI see! This is a {analysis['problem_type']} problem.")
+            # Handle different problem types
+            problem_type = analysis.get('problem_type', 'linear_equation').lower()
+            if 'quadratic' in problem_type:
+                problem_type = 'quadratic_equation'
+            elif 'system' in problem_type:
+                problem_type = 'system_of_equations'
+            else:
+                problem_type = 'linear_equation'
+            
+            print(f"\nI see! This is a {problem_type} problem.")
             print("Let's solve it together step by step.")
-            print("I'll guide you through each step, and you'll provide the answers.")
+            print("I'll guide you through each step, and you'll provide the answers.\n")
             
-            # Step 2: Generate solution steps
-            self.solution_steps = self.scaffolding_engine.generate_scaffolding(
-                concept=analysis['problem_type'],
-                problem_analysis=analysis,
-                knowledge_assessment={'knowledge_gaps': []},
-                problem_text=problem
-            )['steps']
-            
-            self.current_step = 0
-            self.total_steps = len(self.solution_steps)
-            
-            # Guide through each step
-            while self.current_step < self.total_steps:
-                if not self.handle_step():
-                    break
-            
-            if self.current_step >= self.total_steps:
-                print("\n🎉 Congratulations! You've successfully solved the problem!")
-                self.suggest_practice()
-            
-        except Exception as e:
-            print(f"\nI apologize, but I'm having trouble with this problem.")
-            print(f"Error: {str(e)}")
-            print("Let's try a different problem!")
-    
-    def handle_step(self) -> bool:
-        """Handle a single step in the problem-solving process."""
-        step = self.solution_steps[self.current_step]
-        print(f"\nStep {self.current_step + 1} of {len(self.solution_steps)}:")
-        print(step['instruction'])
-        
-        attempts = 0
-        while attempts < self.max_attempts:
-            print("\nWhat's your answer? (Type 'hint' for help, 'explain' for detailed explanation, or 'quit' to stop)")
-            answer = input("> ").strip()
-            
-            if answer.lower() == 'quit':
-                return False
-            elif answer.lower() == 'hint':
-                print(f"\n💡 Hint: {step['hint']}")
-                continue
-            elif answer.lower() == 'explain':
-                print(f"\n📚 Detailed Explanation:")
-                print(step['explanation'])
-                print("\nKey Concepts for this step:")
-                continue
-            
-            # Validate the answer using LLM
-            try:
-                result = self.validator.validate_answer(
-                    step["instruction"],
-                    step["expected_answer"],
-                    answer
-                )
+            # Step 2: Get solution steps
+            self.solution_steps = self.scaffolding_engine.generate_solution_steps(problem)
+            if not self.solution_steps:
+                print("I apologize, but I'm having trouble generating steps for this problem.")
+                print("Let's try another problem!")
+                return
                 
-                if result["is_correct"]:
-                    print("\n✅ Correct! Great job!")
+            self.total_steps = len(self.solution_steps)
+            if self.total_steps == 0:
+                print("I apologize, but I couldn't generate steps for this problem.")
+                print("Let's try another problem!")
+                return
+            
+            # Step 3: Guide through each step
+            for i, step in enumerate(self.solution_steps, 1):
+                print(f"Step {i} of {self.total_steps}:")
+                print(step["instruction"])
+                print("\nWhat's your answer? (Type 'hint' for help, 'explain' for detailed explanation, or 'quit' to stop)")
+                
+                attempts = 0
+                max_attempts = 3
+                while attempts < max_attempts:
+                    answer = input("> ").strip().lower()
                     
-                    # Give extra encouragement for showing work
-                    if result.get("understanding_level") == "full":
-                        if result.get("is_final_answer"):
+                    if answer in ['quit', 'exit']:
+                        return
+                    elif answer == 'hint':
+                        print(f"\n💡 Hint: {step['hint']}")
+                        print("\nWhat's your answer?")
+                        continue
+                    elif answer == 'explain':
+                        print(f"\n📝 Explanation: {step['explanation']}")
+                        print("\nWhat's your answer?")
+                        continue
+                        
+                    # Validate the answer
+                    validation = self.validator.validate_answer(
+                        step_instruction=step["instruction"],
+                        expected_answer=step["expected_answer"],
+                        user_answer=answer
+                    )
+                    
+                    if validation["is_correct"]:
+                        print("\n✅ Correct! Great job!")
+                        if validation.get("understanding_level") == "full":
                             print("Perfect! You've found the solution!")
                         else:
                             print("Excellent work showing your steps! This is a great way to solve problems.")
-                    
-                    if result.get("explanation") and result["explanation"] != "Correct!":
-                        print(f"({result['explanation']})")
-                    
-                    print(f"\nExplanation: {step['explanation']}")
-                    self.current_step += 1
-                    return True
-                else:
-                    attempts += 1
-                    if attempts < self.max_attempts:
-                        print(f"\n❌ That's not quite right. You have {self.max_attempts - attempts} more attempts.")
-                        if result.get("explanation"):
-                            print(f"Hint: {result['explanation']}")
-                        print("Would you like another hint? (yes/no)")
-                        if input("> ").lower().startswith('y'):
-                            print(f"\n💡 Hint: {step['hint']}")
+                        print(f"({validation['explanation']})")
+                        print(f"\nExplanation: {step['explanation']}")
+                        break
                     else:
-                        print("\n❌ Let's look at this step again.")
-                        # Show all equivalent forms if they exist
-                        expected_forms = step['expected_answer'].split('|')
-                        if len(expected_forms) > 1:
-                            print("The answer could be written in any of these equivalent forms:")
-                            for form in expected_forms:
-                                print(f"  • {form}")
+                        attempts += 1
+                        if attempts < max_attempts:
+                            print(f"\n❌ That's not quite right. You have {max_attempts - attempts} more attempts.")
+                            print(f"Hint: {validation['explanation']}")
+                            print("Would you like another hint? (yes/no)")
+                            if input("> ").strip().lower() == 'yes':
+                                print(f"\n💡 Hint: {step['hint']}")
+                            print("\nWhat's your answer? (Type 'hint' for help, 'explain' for detailed explanation, or 'quit' to stop)")
                         else:
-                            print(f"The correct answer was: {step['expected_answer']}")
-                        print(f"Explanation: {step['explanation']}")
-                        return False
-                        
-            except Exception as e:
-                print(f"Debug - Validation error: {str(e)}")
-                # Fallback to basic string comparison
-                if self.validator.check_equivalent_forms(step['expected_answer'], answer):
-                    print("\n✅ Correct! Great job!")
-                    print(f"\nExplanation: {step['explanation']}")
-                    self.current_step += 1
-                    return True
-                else:
-                    attempts += 1
-                    if attempts < self.max_attempts:
-                        print(f"\n❌ That's not quite right. You have {self.max_attempts - attempts} more attempts.")
-                        print("Would you like a hint? (yes/no)")
-                        if input("> ").lower().startswith('y'):
-                            print(f"\n💡 Hint: {step['hint']}")
-                    else:
-                        print("\n❌ Let's look at this step again.")
-                        print(f"The correct answer was: {step['expected_answer']}")
-                        print(f"Explanation: {step['explanation']}")
-                        return False
-        
-        return False
-    
+                            print(f"\n❌ The correct answer was: {step['expected_answer']}")
+                            print(f"Explanation: {step['explanation']}")
+                            if i < len(self.solution_steps):
+                                print("\nLet's continue with the next step.")
+                
+            print("\n🎉 Congratulations! You've successfully solved the problem!")
+            
+            # Step 4: Offer practice
+            print("\nWould you like to try a similar problem for practice? (yes/no)")
+            practice_response = input("> ").strip().lower()
+            if practice_response == 'yes':
+                practice_problem = {
+                    "problem": "2(x + 3) = 8",
+                    "type": problem_type
+                }
+                print("\nHere's a similar problem to try:")
+                print(practice_problem["problem"])
+                
+        except Exception as e:
+            logger.error(f"Error in guide_problem_solution: {str(e)}", exc_info=True)
+            print("\nI apologize, but I'm having trouble with this problem.")
+            print("Let's try another one!")
+
     def check_answer(self, user_answer: str, expected_answer: str) -> bool:
         """Compare user's answer with expected answer."""
         # Remove spaces and convert to lowercase for comparison
@@ -209,7 +224,7 @@ class AITutor:
         )
         
         print("\nWould you like to try a similar problem for practice? (yes/no)")
-        if input("> ").lower().strip() == 'yes':
+        if input("> ").strip().lower() == 'yes':
             print("\nHere's a similar problem to try:")
             print(reinforcement['practice_set'][0])
 

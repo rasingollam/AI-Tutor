@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import json
 from typing import Dict
 
-class ProblemUnderstandingEngine:
+class ProblemAnalyzer:
     def __init__(self):
         load_dotenv()
         self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
