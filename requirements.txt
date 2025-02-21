@@ -4,3 +4,6 @@ jsonschema==4.20.0
 pytest==7.4.3
 Pillow==10.2.0  # For image handling
 requests==2.31.0  # For URL handling
+fastapi
+uvicorn
+python-multipart

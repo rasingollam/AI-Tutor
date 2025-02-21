@@ -23,13 +23,14 @@ load_dotenv()
 
 app = FastAPI(title="AI Math Tutor API")
 
-# Configure CORS
+# Configure CORS with more permissive settings for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with your app's domain
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
 
 # Initialize components

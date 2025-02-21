@@ -17,18 +17,28 @@ export default function App() {
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
+            fontSize: 18,
           },
+          headerTitleAlign: 'center',
+          contentStyle: {
+            backgroundColor: '#fff',
+          },
+          animation: 'slide_from_right',
         }}
       >
         <Stack.Screen 
           name="Home" 
           component={HomeScreen}
-          options={{ title: 'AI Math Tutor' }}
+          options={{ 
+            title: 'AI Math Tutor',
+          }}
         />
         <Stack.Screen 
           name="Tutor" 
           component={TutorScreen}
-          options={{ title: 'Problem Solving' }}
+          options={{ 
+            title: 'Problem Solving',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
