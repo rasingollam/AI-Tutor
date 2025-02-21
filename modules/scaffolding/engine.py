@@ -19,20 +19,26 @@ Type: {concept}
 Analysis: {problem_analysis}
 Student Level: {knowledge_assessment}
 
-Return a JSON object with solution steps for the GIVEN problem above (not the example). Each step must have:
-- instruction: What to do in this step
-- expected_answer: The correct answer for this step
-- hint: A helpful hint
-- explanation: Why this step works
+Create steps that:
+1. Are clear and specific about what needs to be done
+2. Include the expected result of each step
+3. Provide helpful hints for common mistakes
+4. Give clear explanations of the mathematical concepts
 
-Format example (but create steps for the GIVEN problem, not this example):
+For each step, provide:
+- instruction: Clear, specific instruction about what to do AND what the result should look like
+- expected_answer: The answer for this specific step (include alternate forms if applicable)
+- hint: A helpful hint that guides without giving away the answer
+- explanation: Why this step is important and how it helps solve the problem
+
+Example format (but create steps for the GIVEN problem):
 {{
     "steps": [
         {{
-            "instruction": "First step instruction",
-            "expected_answer": "expected result",
-            "hint": "helpful hint",
-            "explanation": "why this step works"
+            "instruction": "Move all x terms to the left side by subtracting 4x from both sides. You should get: -2x + 6 = -2",
+            "expected_answer": "-2x + 6 = -2|-2x+6=-2|6-2x=-2",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with x) on one side makes it easier to solve for x"
         }}
     ]
 }}"""

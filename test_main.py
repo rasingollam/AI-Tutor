@@ -6,6 +6,7 @@ from modules.knowledge_assessment.diagnoser import KnowledgeAssessor
 from modules.scaffolding.engine import ScaffoldingEngine
 from modules.feedback.feedback_engine import FeedbackEngine
 from modules.knowledge_reinforcement.reinforcer import KnowledgeReinforcer
+from utils.validation import AnswerValidator
 
 class AITutor:
     def __init__(self):
@@ -14,10 +15,12 @@ class AITutor:
         self.scaffolding_engine = ScaffoldingEngine()
         self.feedback_engine = FeedbackEngine()
         self.reinforcer = KnowledgeReinforcer()
+        self.validator = AnswerValidator()
         self.current_step = 0
         self.total_steps = 0
         self.solution_steps = []
-    
+        self.max_attempts = 3
+
     def start_tutoring_session(self):
         print(f"\n{'='*50}")
         print(f"Welcome to AI Math Tutor!")
@@ -70,62 +73,95 @@ class AITutor:
             print("Let's try a different problem!")
     
     def handle_step(self) -> bool:
-        """Handle a single step of the problem-solving process.
-        Returns False if user wants to quit, True otherwise."""
+        """Handle a single step in the problem-solving process."""
         step = self.solution_steps[self.current_step]
-        
-        print(f"\nStep {self.current_step + 1} of {self.total_steps}:")
+        print(f"\nStep {self.current_step + 1} of {len(self.solution_steps)}:")
         print(step['instruction'])
         
         attempts = 0
-        max_attempts = 3
-        
-        while attempts < max_attempts:
+        while attempts < self.max_attempts:
             print("\nWhat's your answer? (Type 'hint' for help, 'explain' for detailed explanation, or 'quit' to stop)")
-            answer = input("> ").strip().lower()
+            answer = input("> ").strip()
             
-            if answer == 'quit':
+            if answer.lower() == 'quit':
                 return False
-            elif answer == 'hint':
-                self.show_hint(step)
+            elif answer.lower() == 'hint':
+                print(f"\n💡 Hint: {step['hint']}")
                 continue
-            elif answer == 'explain':
-                self.explain_step_in_detail(step)
+            elif answer.lower() == 'explain':
+                print(f"\n📚 Detailed Explanation:")
+                print(step['explanation'])
+                print("\nKey Concepts for this step:")
                 continue
             
-            if self.check_answer(answer, step['expected_answer']):
-                print("\n✅ Correct! Great job!")
-                if step.get('explanation'):
+            # Validate the answer using LLM
+            try:
+                result = self.validator.validate_answer(
+                    step["instruction"],
+                    step["expected_answer"],
+                    answer
+                )
+                
+                if result["is_correct"]:
+                    print("\n✅ Correct! Great job!")
+                    
+                    # Give extra encouragement for showing work
+                    if result.get("understanding_level") == "full":
+                        if result.get("is_final_answer"):
+                            print("Perfect! You've found the solution!")
+                        else:
+                            print("Excellent work showing your steps! This is a great way to solve problems.")
+                    
+                    if result.get("explanation") and result["explanation"] != "Correct!":
+                        print(f"({result['explanation']})")
+                    
                     print(f"\nExplanation: {step['explanation']}")
-                self.current_step += 1
-                return True
-            else:
-                attempts += 1
-                remaining = max_attempts - attempts
-                if remaining > 0:
-                    print(f"\n❌ That's not quite right. You have {remaining} more attempts.")
-                    print("Would you like a hint? (yes/no)")
-                    if input("> ").strip().lower() == 'yes':
-                        self.show_hint(step)
+                    self.current_step += 1
+                    return True
+                else:
+                    attempts += 1
+                    if attempts < self.max_attempts:
+                        print(f"\n❌ That's not quite right. You have {self.max_attempts - attempts} more attempts.")
+                        if result.get("explanation"):
+                            print(f"Hint: {result['explanation']}")
+                        print("Would you like another hint? (yes/no)")
+                        if input("> ").lower().startswith('y'):
+                            print(f"\n💡 Hint: {step['hint']}")
+                    else:
+                        print("\n❌ Let's look at this step again.")
+                        # Show all equivalent forms if they exist
+                        expected_forms = step['expected_answer'].split('|')
+                        if len(expected_forms) > 1:
+                            print("The answer could be written in any of these equivalent forms:")
+                            for form in expected_forms:
+                                print(f"  • {form}")
+                        else:
+                            print(f"The correct answer was: {step['expected_answer']}")
+                        print(f"Explanation: {step['explanation']}")
+                        return False
+                        
+            except Exception as e:
+                print(f"Debug - Validation error: {str(e)}")
+                # Fallback to basic string comparison
+                if self.validator.check_equivalent_forms(step['expected_answer'], answer):
+                    print("\n✅ Correct! Great job!")
+                    print(f"\nExplanation: {step['explanation']}")
+                    self.current_step += 1
+                    return True
+                else:
+                    attempts += 1
+                    if attempts < self.max_attempts:
+                        print(f"\n❌ That's not quite right. You have {self.max_attempts - attempts} more attempts.")
+                        print("Would you like a hint? (yes/no)")
+                        if input("> ").lower().startswith('y'):
+                            print(f"\n💡 Hint: {step['hint']}")
+                    else:
+                        print("\n❌ Let's look at this step again.")
+                        print(f"The correct answer was: {step['expected_answer']}")
+                        print(f"Explanation: {step['explanation']}")
+                        return False
         
-        # If we get here, user has used all attempts
-        print("\nLet me help you with this step.")
-        print(f"The correct answer is: {step['expected_answer']}")
-        print("\nLet's understand why:")
-        self.explain_step_in_detail(step)
-        print("\nDo you understand now? Type 'yes' to continue or 'no' for more help.")
-        
-        while True:
-            response = input("> ").strip().lower()
-            if response == 'yes':
-                self.current_step += 1
-                return True
-            elif response == 'no':
-                print("\nLet's break it down further:")
-                self.provide_additional_help(step)
-                print("\nReady to continue? (yes/no)")
-            else:
-                print("Please type 'yes' or 'no'")
+        return False
     
     def check_answer(self, user_answer: str, expected_answer: str) -> bool:
         """Compare user's answer with expected answer."""
