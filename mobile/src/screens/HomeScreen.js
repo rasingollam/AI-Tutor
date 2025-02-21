@@ -47,6 +47,32 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  const takePhoto = async () => {
+    console.log('Starting camera...');
+    
+    // Request camera permission
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    console.log('Camera permission status:', status);
+    
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Please grant permission to use the camera.');
+      return;
+    }
+
+    console.log('Launching camera...');
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log('Camera result:', result);
+
+    if (!result.canceled && result.assets && result.assets[0]) {
+      console.log('Photo taken:', result.assets[0].uri);
+      setSelectedImage(result.assets[0].uri);
+    }
+  };
+
   const removeImage = () => {
     setSelectedImage(null);
   };
@@ -89,19 +115,26 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Enter your math problem here..."
           value={problemText}
           onChangeText={setProblemText}
+          placeholder="Enter your math problem"
+          placeholderTextColor="#999"
           multiline
-          numberOfLines={3}
-          textAlignVertical="top"
         />
-        <TouchableOpacity 
-          style={styles.imageButton} 
-          onPress={pickImage}
-        >
-          <Ionicons name="image-outline" size={24} color="#007AFF" />
-        </TouchableOpacity>
+        <View style={styles.imageButtonsContainer}>
+          <TouchableOpacity 
+            style={styles.imageButton} 
+            onPress={takePhoto}
+          >
+            <Ionicons name="camera-outline" size={24} color="#007AFF" />
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.imageButton} 
+            onPress={pickImage}
+          >
+            <Ionicons name="image-outline" size={24} color="#007AFF" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {selectedImage && (
@@ -144,23 +177,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: 20,
-    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#DDD',
+    borderRadius: 8,
     backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   input: {
     flex: 1,
-    padding: 15,
+    padding: 12,
     fontSize: 16,
     color: '#333',
-    minHeight: 100,
+    minHeight: 80,
+  },
+  imageButtonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   imageButton: {
-    padding: 15,
+    padding: 12,
     alignSelf: 'flex-start',
   },
   imagePreviewContainer: {
