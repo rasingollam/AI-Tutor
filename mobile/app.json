@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "AI Math Tutor",
+    "slug": "ai-math-tutor",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "expo-image-picker"
+    ],
+    "newArchEnabled": true
+  }
+}
