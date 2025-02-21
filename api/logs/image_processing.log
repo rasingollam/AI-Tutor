@@ -1,625 +1,282 @@
-2025-02-21 14:35:38,360 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 15:25:24,219 - image_processor - INFO - Processing image: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=2296x4080 at 0x7B017D42E180> in problem mode
-2025-02-21 15:25:24,224 - image_processor - ERROR - Image processing error: read
-2025-02-21 15:43:45,806 - image_processor - INFO - Processing image: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=2296x4080 at 0x7B017D368560> in problem mode
-2025-02-21 15:43:45,807 - image_processor - ERROR - Image processing error: read
-2025-02-21 15:48:00,445 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 15:54:48,250 - image_processor - INFO - Processing image: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=2296x4080 at 0x7C611D15DF70> in problem mode
-2025-02-21 15:54:48,250 - image_processor - ERROR - Image processing error: read
-2025-02-21 15:55:23,299 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 15:56:04,289 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 15:56:04,289 - image_processor - INFO - Original image size: (2296, 4080)
-2025-02-21 15:56:04,416 - image_processor - INFO - Resized image to: (225, 400)
-2025-02-21 15:56:04,418 - image_processor - INFO - Image converted and encoded
-2025-02-21 15:56:04,418 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+2025-02-21 17:02:37,732 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:02:37,732 - image_processor - INFO - Original image size: (2750, 778)
+2025-02-21 17:02:37,760 - image_processor - INFO - Resized image to: (400, 113)
+2025-02-21 17:02:37,761 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:02:37,761 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
                 Return your response in this EXACT JSON format:
                 {
                     "problem_text": "write the exact math problem here",
                     "problem_type": "linear_equation/quadratic/word_problem/etc",
                     "additional_context": "any additional instructions or context"
                 }
-2025-02-21 15:56:06,191 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+2025-02-21 17:02:39,056 - image_processor - INFO - Raw API response: **Math Problem Extraction**
 
-*   **Problem Text:** 2(x + 5) = 7x - 23
-*   **Problem Type:** Linear Equation
-*   **Additional Context:** Solve for x.
-2025-02-21 15:56:06,192 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(x + 5) = 7x - 23 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:02:14,207 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 16:03:19,329 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:03:19,329 - image_processor - INFO - Original image size: (2012, 372)
-2025-02-21 16:03:19,341 - image_processor - INFO - Resized image to: (400, 73)
-2025-02-21 16:03:19,342 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:03:19,342 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:03:20,683 - image_processor - INFO - Raw API response: **Problem Extraction**
-
-*   **Problem Text:** 2(x + 5) = 7x - 23
-*   **Problem Type:** Linear Equation
-*   **Additional Context:** Solve for x.
-2025-02-21 16:03:20,684 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(x + 5) = 7x - 23 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:04:41,903 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:04:41,903 - image_processor - INFO - Original image size: (1836, 380)
-2025-02-21 16:04:41,914 - image_processor - INFO - Resized image to: (400, 82)
-2025-02-21 16:04:41,915 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:04:41,915 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:04:43,133 - image_processor - INFO - Raw API response: **Math Problem Extraction**
-
-* **Problem Text:** 2(x + 5) = 7x - 23
+* **Problem Text:** 2x + 4x + 10 = 0
 * **Problem Type:** Linear Equation
 * **Additional Context:** Solve for x.
-2025-02-21 16:04:43,133 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(x + 5) = 7x - 23 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:05:06,204 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:05:06,204 - image_processor - INFO - Original image size: (1991, 1907)
-2025-02-21 16:05:06,259 - image_processor - INFO - Resized image to: (400, 383)
-2025-02-21 16:05:06,260 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:05:06,260 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+2025-02-21 17:02:39,057 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2x + 4x + 10 = 0 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:03:03,060 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:03:03,060 - image_processor - INFO - Original image size: (2873, 1362)
+2025-02-21 17:03:03,118 - image_processor - INFO - Resized image to: (400, 189)
+2025-02-21 17:03:03,120 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:03:03,120 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
                 Return your response in this EXACT JSON format:
                 {
                     "problem_text": "write the exact math problem here",
                     "problem_type": "linear_equation/quadratic/word_problem/etc",
                     "additional_context": "any additional instructions or context"
                 }
-2025-02-21 16:05:07,758 - image_processor - INFO - Raw API response: **Math Problem Extraction**
-
-*   **Problem Text:** 2(n + 5) = 7n - 23
-*   **Problem Type:** Linear Equation
-*   **Additional Context:** Solve for n.
-2025-02-21 16:05:07,759 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 5) = 7n - 23 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:05:55,357 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:05:55,357 - image_processor - INFO - Original image size: (1991, 1907)
-2025-02-21 16:05:55,424 - image_processor - INFO - Resized image to: (400, 383)
-2025-02-21 16:05:55,424 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:05:55,424 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:05:57,550 - image_processor - INFO - Raw API response: **Math Problem Extraction**
-
-*   **Problem Text:** 2(n + 5) = 7n - 23
-*   **Problem Type:** Linear Equation
-*   **Additional Context:** Solve for n.
-2025-02-21 16:05:57,550 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 5) = 7n - 23 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:07:09,660 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:07:09,661 - image_processor - INFO - Original image size: (1991, 1907)
-2025-02-21 16:07:09,738 - image_processor - INFO - Resized image to: (400, 383)
-2025-02-21 16:07:09,739 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:07:09,739 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:07:11,483 - image_processor - INFO - Raw API response: **Math Problem Extraction**
-
-*   **Problem Text:** 2(n + 5) = 7n - 23
-*   **Problem Type:** Linear Equation
-*   **Additional Context:** Solve for n.
-2025-02-21 16:07:11,483 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 5) = 7n - 23 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:09:33,730 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 16:12:36,206 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:12:36,206 - image_processor - INFO - Original image size: (1837, 859)
-2025-02-21 16:12:36,239 - image_processor - INFO - Resized image to: (400, 187)
-2025-02-21 16:12:36,240 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:12:36,240 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:12:37,777 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: -2n + 6 = -2
-* **Explanation**: The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of -2n + 6 = -2.
-* **Confidence**: 0.95
-2025-02-21 16:12:37,778 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': -2n + 6 = -2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of -2n + 6 = -2. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:13:07,093 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:13:07,093 - image_processor - INFO - Original image size: (2827, 1347)
-2025-02-21 16:13:07,147 - image_processor - INFO - Resized image to: (399, 190)
-2025-02-21 16:13:07,148 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:13:07,148 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:13:08,939 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 2(n + 5) = 7n - 23, 2n + 10 = 7n - 23
-* **Explanation**: The image shows two equations: 2(n + 5) = 7n - 23 and 2n + 10 = 7n - 23. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or concept they are intended to illustrate.
-* **Confidence**: 0.95
-2025-02-21 16:13:08,940 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2(n + 5) = 7n - 23, 2n + 10 = 7n - 23 : The image shows two equations: 2(n + 5) = 7n - 23 and 2n + 10 = 7n - 23. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or concept they are intended to illustrate. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:13:46,818 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 16:17:09,555 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:17:09,555 - image_processor - INFO - Original image size: (2827, 1347)
-2025-02-21 16:17:09,608 - image_processor - INFO - Resized image to: (399, 190)
-2025-02-21 16:17:09,608 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:17:09,608 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:17:11,247 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 2(n + 5) = 7n - 23, 2n + 10 = 7n - 23
-* **Explanation**: The image shows two equations: 2(n + 5) = 7n - 23 and 2n + 10 = 7n - 23. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or concept they are intended to illustrate.
-* **Confidence**: 0.95
-2025-02-21 16:17:11,247 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2(n + 5) = 7n - 23, 2n + 10 = 7n - 23 : The image shows two equations: 2(n + 5) = 7n - 23 and 2n + 10 = 7n - 23. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or concept they are intended to illustrate. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:25:21,156 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:25:21,156 - image_processor - INFO - Original image size: (2458, 878)
-2025-02-21 16:25:21,188 - image_processor - INFO - Resized image to: (400, 142)
-2025-02-21 16:25:21,189 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:25:21,189 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:25:22,920 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 2n - 7n = -23 - 10, -5n = -33, 5n = 33
-* **Explanation**: The image shows a series of mathematical equations and their solutions. The first equation is 2n - 7n = -23 - 10, which simplifies to -5n = -33. The second equation is -5n = -33, which is solved for n by dividing both sides by -5, resulting in n = 33/5 or 6.6. The third equation is 5n = 33, which is also solved for n by dividing both sides by 5, resulting in n = 33/5 or 6.6.
-* **Confidence**: 0.95
-2025-02-21 16:25:22,921 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n - 7n = -23 - 10, -5n = -33, 5n = 33 : The image shows a series of mathematical equations and their solutions. The first equation is 2n - 7n = -23 - 10, which simplifies to -5n = -33. The second equation is -5n = -33, which is solved for n by dividing both sides by -5, resulting in n = 33/5 or 6.6. The third equation is 5n = 33, which is also solved for n by dividing both sides by 5, resulting in n = 33/5 or 6.6. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:26:48,881 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:26:48,882 - image_processor - INFO - Original image size: (2458, 1159)
-2025-02-21 16:26:48,920 - image_processor - INFO - Resized image to: (400, 188)
-2025-02-21 16:26:48,921 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:26:48,921 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:26:50,366 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 2n + 10 = 7n - 23, 10 = 5n - 23
-* **Explanation**: The image shows two equations with variables n and constants. The first equation is 2n + 10 = 7n - 23, and the second equation is 10 = 5n - 23.
-* **Confidence**: 0.95
-2025-02-21 16:26:50,366 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n + 10 = 7n - 23, 10 = 5n - 23 : The image shows two equations with variables n and constants. The first equation is 2n + 10 = 7n - 23, and the second equation is 10 = 5n - 23. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:29:23,187 - image_processor - INFO - ImageProcessor initialized
-2025-02-21 16:29:34,433 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:29:34,434 - image_processor - INFO - Original image size: (2458, 1159)
-2025-02-21 16:29:34,475 - image_processor - INFO - Resized image to: (400, 188)
-2025-02-21 16:29:34,476 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:29:34,476 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:29:36,074 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 2n + 10 = 7n - 23, 10 = 5n - 23
-* **Explanation**: The image shows two equations with variables n and constants. The first equation is 2n + 10 = 7n - 23, and the second equation is 10 = 5n - 23.
-* **Confidence**: 0.95
-2025-02-21 16:29:36,075 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n + 10 = 7n - 23, 10 = 5n - 23 : The image shows two equations with variables n and constants. The first equation is 2n + 10 = 7n - 23, and the second equation is 10 = 5n - 23. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:30:32,528 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:30:32,528 - image_processor - INFO - Original image size: (2826, 897)
-2025-02-21 16:30:32,561 - image_processor - INFO - Resized image to: (400, 126)
-2025-02-21 16:30:32,562 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:30:32,562 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:30:34,022 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 10 + 23n = 5n - 23 + 23, 33 = 5n
-* **Explanation**: The image shows a simple algebraic equation with one variable (n) and two equations. The first equation is 10 + 23n = 5n - 23 + 23, which simplifies to 10 + 23n = 5n. The second equation is 33 = 5n.
-* **Confidence**: 0.95
-2025-02-21 16:30:34,023 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 10 + 23n = 5n - 23 + 23, 33 = 5n : The image shows a simple algebraic equation with one variable (n) and two equations. The first equation is 10 + 23n = 5n - 23 + 23, which simplifies to 10 + 23n = 5n. The second equation is 33 = 5n. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:31:45,420 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:31:45,421 - image_processor - INFO - Original image size: (2458, 411)
-2025-02-21 16:31:45,435 - image_processor - INFO - Resized image to: (400, 66)
-2025-02-21 16:31:45,435 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:31:45,435 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:31:46,873 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text:** 333 = 5n
-* **Explanation:** The image shows a simple equation where 333 is equal to 5 times an unknown variable n.
-* **Confidence:** 0.95
-2025-02-21 16:31:46,873 - image_processor - INFO - Extracted content (no JSON): {'answer_text': '333 = 5n The image shows a simple equation where 333 is equal to 5 times an unknown variable n. 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:32:31,064 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:32:31,064 - image_processor - INFO - Original image size: (1676, 424)
-2025-02-21 16:32:31,074 - image_processor - INFO - Resized image to: (400, 101)
-2025-02-21 16:32:31,075 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:32:31,075 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:32:32,444 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 33 = 5n
-* **Explanation**: The image shows a simple equation where 33 is equal to 5 times an unknown variable n.
-* **Confidence**: 0.95
-2025-02-21 16:32:32,444 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 33 = 5n : The image shows a simple equation where 33 is equal to 5 times an unknown variable n. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:33:13,060 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:33:13,060 - image_processor - INFO - Original image size: (2458, 846)
-2025-02-21 16:33:13,088 - image_processor - INFO - Resized image to: (400, 137)
-2025-02-21 16:33:13,088 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:33:13,088 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:33:14,374 - image_processor - INFO - Raw API response: **Mathematical Answer/Expression:**
-
-*   33/5 = h
-
-**Explanation:**
-
-*   The image shows a simple equation where 33 divided by 5 equals h.
-
-**Confidence:**
-
-*   0.95
-2025-02-21 16:33:14,375 - image_processor - INFO - Extracted content (no JSON): {'answer_text': '33/5 = h The image shows a simple equation where 33 divided by 5 equals h. 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:34:17,266 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:34:17,267 - image_processor - INFO - Original image size: (2458, 1019)
-2025-02-21 16:34:17,303 - image_processor - INFO - Resized image to: (400, 165)
-2025-02-21 16:34:17,304 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:34:17,304 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:34:18,607 - image_processor - INFO - Raw API response: **Answer:**
-
-{ "answer_text": "n = 6.6", "explanation": "The image shows a simple algebraic equation where n is equal to 33/5, which simplifies to 6.6.", "confidence": 0.95 }
-2025-02-21 16:34:18,607 - image_processor - INFO - Extracted JSON string: { "answer_text": "n = 6.6", "explanation": "The image shows a simple algebraic equation where n is equal to 33/5, which simplifies to 6.6.", "confidence": 0.95 }
-2025-02-21 16:34:18,607 - image_processor - INFO - Extracted content: {'answer_text': 'n = 6.6', 'explanation': 'The image shows a simple algebraic equation where n is equal to 33/5, which simplifies to 6.6.', 'confidence': 0.95}
-2025-02-21 16:38:37,217 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:38:37,217 - image_processor - INFO - Original image size: (2458, 956)
-2025-02-21 16:38:37,248 - image_processor - INFO - Resized image to: (400, 155)
-2025-02-21 16:38:37,249 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:38:37,249 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:38:38,656 - image_processor - INFO - Raw API response: **Problem Extraction**
-
-*   **Problem Text:** 2(n+3) = 4n - 2
-*   **Problem Type:** Linear Equation
-*   **Additional Context:** Solve for n.
-2025-02-21 16:38:38,656 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n+3) = 4n - 2 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:39:02,573 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:39:02,573 - image_processor - INFO - Original image size: (2695, 1398)
-2025-02-21 16:39:02,623 - image_processor - INFO - Resized image to: (400, 207)
-2025-02-21 16:39:02,623 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:39:02,623 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:39:04,165 - image_processor - INFO - Raw API response: **Answer:**
-
-{
-    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2",
-    "explanation": "The image shows two equations: 2(n+3) = 4n - 2 and 2n + 6 = 4n - 2. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or task they are intended to solve.",
-    "confidence": 0.95
-}
-2025-02-21 16:39:04,165 - image_processor - INFO - Extracted JSON string: {
-    "answer_text": "2(n+3) = 4n - 2, 2n + 6 = 4n - 2",
-    "explanation": "The image shows two equations: 2(n+3) = 4n - 2 and 2n + 6 = 4n - 2. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or task they are intended to solve.",
-    "confidence": 0.95
-}
-2025-02-21 16:39:04,165 - image_processor - INFO - Extracted content: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2', 'explanation': 'The image shows two equations: 2(n+3) = 4n - 2 and 2n + 6 = 4n - 2. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or task they are intended to solve.', 'confidence': 0.95}
-2025-02-21 16:40:18,870 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:40:18,870 - image_processor - INFO - Original image size: (2765, 356)
-2025-02-21 16:40:18,884 - image_processor - INFO - Resized image to: (400, 51)
-2025-02-21 16:40:18,884 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:40:18,884 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:40:20,472 - image_processor - INFO - Raw API response: **Answer:**
-
-{
-    "answer_text": "(2n + 6) - 2n = (4n - 2) - 2n",
-    "explanation": "The image shows a mathematical equation with variables and constants. The equation is written in a simple format, with the left side being an expression involving the variable 'n' and the right side being another expression involving 'n'. The equation is not solved for 'n', but rather presented as an equality between the two expressions.",
-    "confidence": 0.95
-}
-2025-02-21 16:40:20,472 - image_processor - INFO - Extracted JSON string: {
-    "answer_text": "(2n + 6) - 2n = (4n - 2) - 2n",
-    "explanation": "The image shows a mathematical equation with variables and constants. The equation is written in a simple format, with the left side being an expression involving the variable 'n' and the right side being another expression involving 'n'. The equation is not solved for 'n', but rather presented as an equality between the two expressions.",
-    "confidence": 0.95
-}
-2025-02-21 16:40:20,473 - image_processor - INFO - Extracted content: {'answer_text': '(2n + 6) - 2n = (4n - 2) - 2n', 'explanation': "The image shows a mathematical equation with variables and constants. The equation is written in a simple format, with the left side being an expression involving the variable 'n' and the right side being another expression involving 'n'. The equation is not solved for 'n', but rather presented as an equality between the two expressions.", 'confidence': 0.95}
-2025-02-21 16:41:11,296 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:41:11,296 - image_processor - INFO - Original image size: (2696, 1115)
-2025-02-21 16:41:11,337 - image_processor - INFO - Resized image to: (399, 165)
-2025-02-21 16:41:11,337 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:41:11,337 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:41:12,695 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 6 = 2n - 2
-* **Explanation**: The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 6 = 2n - 2.
-* **Confidence**: 0.95
-2025-02-21 16:41:12,696 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 6 = 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 6 = 2n - 2. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:41:56,638 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:41:56,639 - image_processor - INFO - Original image size: (2631, 1236)
-2025-02-21 16:41:56,682 - image_processor - INFO - Resized image to: (399, 187)
-2025-02-21 16:41:56,682 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:41:56,682 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:41:58,801 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 8 = 2n + 2
-* **Explanation**: The image shows a simple algebraic equation, where the left side of the equation is 6 + 2 and the right side is (2n - 2) + 2. The equation is solved by combining like terms on both sides, resulting in 8 = 2n + 2.
-* **Confidence**: 0.95
-2025-02-21 16:41:58,801 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 8 = 2n + 2 : The image shows a simple algebraic equation, where the left side of the equation is 6 + 2 and the right side is (2n - 2) + 2. The equation is solved by combining like terms on both sides, resulting in 8 = 2n + 2. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:42:49,102 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:42:49,102 - image_processor - INFO - Original image size: (1563, 695)
-2025-02-21 16:42:49,118 - image_processor - INFO - Resized image to: (400, 177)
-2025-02-21 16:42:49,118 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:42:49,118 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:42:50,527 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text:** 2n = 8
-* **Explanation:** The image shows a simple algebraic equation, where the variable "n" is multiplied by 2 and equals 8. This equation can be solved for "n" by dividing both sides by 2.
-* **Confidence:** 0.95
-2025-02-21 16:42:50,527 - image_processor - INFO - Extracted content (no JSON): {'answer_text': '2n = 8 The image shows a simple algebraic equation, where the variable "n" is multiplied by 2 and equals 8. This equation can be solved for "n" by dividing both sides by 2. 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:43:22,996 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:43:22,996 - image_processor - INFO - Original image size: (2000, 1865)
-2025-02-21 16:43:23,047 - image_processor - INFO - Resized image to: (400, 373)
-2025-02-21 16:43:23,048 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:43:23,048 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:43:24,667 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 2n = 8, n = 8/2, n = 4
-* **Explanation**: The image shows a simple algebraic equation being solved for the variable 'n'. The equation starts with 2n = 8, then divides both sides by 2 to isolate 'n', resulting in n = 8/2. Finally, it simplifies the fraction to get n = 4.
-* **Confidence**: 0.95
-2025-02-21 16:43:24,667 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ": 2n = 8, n = 8/2, n = 4 : The image shows a simple algebraic equation being solved for the variable 'n'. The equation starts with 2n = 8, then divides both sides by 2 to isolate 'n', resulting in n = 8/2. Finally, it simplifies the fraction to get n = 4. : 0.95", 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:45:33,583 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:45:33,583 - image_processor - INFO - Original image size: (1534, 2670)
-2025-02-21 16:45:33,646 - image_processor - INFO - Resized image to: (229, 400)
-2025-02-21 16:45:33,648 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:45:33,648 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:45:34,865 - image_processor - INFO - Raw API response: **Math Problem Extraction**
-
-*   **Problem Text:** 2x^2 + 4x + 10 = 0
-*   **Problem Type:** Quadratic Equation
-*   **Additional Context:** Solve for x.
-2025-02-21 16:45:34,866 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2x^2 + 4x + 10 = 0 Quadratic Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
-2025-02-21 16:46:45,739 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
-2025-02-21 16:46:45,739 - image_processor - INFO - Original image size: (2598, 1444)
-2025-02-21 16:46:45,787 - image_processor - INFO - Resized image to: (400, 222)
-2025-02-21 16:46:45,788 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:46:45,788 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
-                Return your response in this EXACT JSON format:
-                {
-                    "problem_text": "write the exact math problem here",
-                    "problem_type": "linear_equation/quadratic/word_problem/etc",
-                    "additional_context": "any additional instructions or context"
-                }
-2025-02-21 16:46:47,431 - image_processor - INFO - Raw API response: **Problem Extraction**
+2025-02-21 17:03:04,352 - image_processor - INFO - Raw API response: **Math Problem Extraction**
 
 *   **Problem Text:** 2x + 4x + 10 = 0
 *   **Problem Type:** Linear Equation
 *   **Additional Context:** Solve for x
+2025-02-21 17:03:04,353 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2x + 4x + 10 = 0 Linear Equation Solve for x', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:03:19,810 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:03:19,811 - image_processor - INFO - Original image size: (2873, 1362)
+2025-02-21 17:03:19,889 - image_processor - INFO - Resized image to: (400, 189)
+2025-02-21 17:03:19,890 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:03:19,890 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 17:03:21,042 - image_processor - INFO - Raw API response: **Math Problem Extraction**
 
-**JSON Format:**
+*   **Problem Text:** 2x + 4x + 10 = 0
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for x
+2025-02-21 17:03:21,042 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2x + 4x + 10 = 0 Linear Equation Solve for x', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:04:08,985 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:04:08,986 - image_processor - INFO - Original image size: (2873, 1362)
+2025-02-21 17:04:09,036 - image_processor - INFO - Resized image to: (400, 189)
+2025-02-21 17:04:09,036 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:04:09,036 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 17:04:10,331 - image_processor - INFO - Raw API response: **Math Problem Extraction**
 
-```
+The math problem in the image is:
+
+**Problem Text:** 
+2x + 4x + 10 = 0
+
+**Problem Type:** 
+Linear Equation
+
+**Additional Context:** 
+Solve for x.
+2025-02-21 17:04:10,331 - image_processor - INFO - Extracted content (no JSON): {'problem_text': 'The math problem in the image is: 2x + 4x + 10 = 0 Linear Equation Solve for x.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:05:09,937 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:05:09,938 - image_processor - INFO - Original image size: (2119, 802)
+2025-02-21 17:05:09,962 - image_processor - INFO - Resized image to: (400, 151)
+2025-02-21 17:05:09,963 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:05:09,963 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 17:05:11,118 - image_processor - INFO - Raw API response: **Problem Extraction**
+
+*   **Problem Text:** 2(n+3) = 4n - 2
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n
+2025-02-21 17:05:11,118 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n+3) = 4n - 2 Linear Equation Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:06:29,585 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:06:29,585 - image_processor - INFO - Original image size: (2119, 802)
+2025-02-21 17:06:29,610 - image_processor - INFO - Resized image to: (400, 151)
+2025-02-21 17:06:29,610 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:06:29,610 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 17:06:30,844 - image_processor - INFO - Raw API response: **Problem Extraction**
+
+*   **Problem Text:** 2(n+3) = 4n - 2
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n
+2025-02-21 17:06:30,844 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n+3) = 4n - 2 Linear Equation Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:06:47,189 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-21 17:06:47,189 - image_processor - INFO - Original image size: (2119, 802)
+2025-02-21 17:06:47,214 - image_processor - INFO - Resized image to: (400, 151)
+2025-02-21 17:06:47,214 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:06:47,214 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-21 17:06:48,483 - image_processor - INFO - Raw API response: **Problem Extraction**
+
+*   **Problem Text:** 2(n+3) = 4n - 2
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n
+2025-02-21 17:06:48,483 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n+3) = 4n - 2 Linear Equation Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-21 17:07:38,901 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:07:38,901 - image_processor - INFO - Original image size: (2738, 733)
+2025-02-21 17:07:38,928 - image_processor - INFO - Resized image to: (399, 107)
+2025-02-21 17:07:38,928 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:07:38,928 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 17:07:40,412 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2n + 6 = 4n - 2
+* **Explanation**: The image shows a simple algebraic equation, where the goal is to solve for the variable 'n'. The equation is presented in its original form without any further manipulation or solution.
+* **Confidence**: 0.95
+2025-02-21 17:07:40,413 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ": 2n + 6 = 4n - 2 : The image shows a simple algebraic equation, where the goal is to solve for the variable 'n'. The equation is presented in its original form without any further manipulation or solution. : 0.95", 'explanation': '', 'confidence': 0.5}
+2025-02-21 17:10:23,203 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:10:23,203 - image_processor - INFO - Original image size: (2638, 617)
+2025-02-21 17:10:23,227 - image_processor - INFO - Resized image to: (400, 93)
+2025-02-21 17:10:23,228 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:10:23,228 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 17:10:24,550 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2n + 6 = 4n - 2
+* **Explanation**: The image shows a simple algebraic equation, where the goal is to solve for the variable 'n'. The equation is presented in its original form without any further manipulation or solution.
+* **Confidence**: 0.95
+2025-02-21 17:10:24,550 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ": 2n + 6 = 4n - 2 : The image shows a simple algebraic equation, where the goal is to solve for the variable 'n'. The equation is presented in its original form without any further manipulation or solution. : 0.95", 'explanation': '', 'confidence': 0.5}
+2025-02-21 17:11:48,951 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:11:48,951 - image_processor - INFO - Original image size: (3039, 792)
+2025-02-21 17:11:48,981 - image_processor - INFO - Resized image to: (400, 104)
+2025-02-21 17:11:48,981 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:11:48,982 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 17:11:50,511 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: (2n + 6) - 2n = (4n - 2) - 2n
+* **Explanation**: The image shows a mathematical equation being solved step by step. The equation starts with (2n + 6) - 2n and is simplified to (4n - 2) - 2n, which further simplifies to 6 = 2n - 2.
+* **Confidence**: 0.95
+2025-02-21 17:11:50,512 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': (2n + 6) - 2n = (4n - 2) - 2n : The image shows a mathematical equation being solved step by step. The equation starts with (2n + 6) - 2n and is simplified to (4n - 2) - 2n, which further simplifies to 6 = 2n - 2. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 17:12:32,210 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:12:32,211 - image_processor - INFO - Original image size: (3072, 1787)
+2025-02-21 17:12:32,290 - image_processor - INFO - Resized image to: (400, 232)
+2025-02-21 17:12:32,290 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:12:32,290 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-21 17:12:34,238 - image_processor - INFO - Raw API response: **Answer:**
+
 {
-    "problem_text": "2x + 4x + 10 = 0",
-    "problem_type": "linear_equation",
-    "additional_context": "Solve for x"
+    "answer_text": "8 = 2n",
+    "explanation": "The image shows a series of algebraic equations and their solutions. The final equation is 8 = 2n, which is the solution to the previous equations.",
+    "confidence": 0.95
 }
-```
-2025-02-21 16:46:47,431 - image_processor - INFO - Extracted JSON string: {
-    "problem_text": "2x + 4x + 10 = 0",
-    "problem_type": "linear_equation",
-    "additional_context": "Solve for x"
+
+**Explanation:**
+
+The image displays a sequence of algebraic equations, each with its corresponding solution. The equations are:
+
+* 2(n+3) = 4n - 2
+* 2n + 6 = 4n - 2
+* (2n + 6) - 2n = (4n - 2) - 2n
+* 6 = 2n - 2
+* 6 + 2 = (2n - 2) + 2
+* 8 = 2n
+
+The final equation, 8 = 2n, is the solution to the previous equations
+2025-02-21 17:12:34,239 - image_processor - INFO - Extracted JSON string: {
+    "answer_text": "8 = 2n",
+    "explanation": "The image shows a series of algebraic equations and their solutions. The final equation is 8 = 2n, which is the solution to the previous equations.",
+    "confidence": 0.95
 }
-2025-02-21 16:46:47,432 - image_processor - INFO - Extracted content: {'problem_text': '2x + 4x + 10 = 0', 'problem_type': 'linear_equation', 'additional_context': 'Solve for x'}
-2025-02-21 16:47:27,113 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:47:27,113 - image_processor - INFO - Original image size: (2458, 597)
-2025-02-21 16:47:27,133 - image_processor - INFO - Resized image to: (400, 97)
-2025-02-21 16:47:27,133 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:47:27,133 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+2025-02-21 17:12:34,239 - image_processor - INFO - Extracted content: {'answer_text': '8 = 2n', 'explanation': 'The image shows a series of algebraic equations and their solutions. The final equation is 8 = 2n, which is the solution to the previous equations.', 'confidence': 0.95}
+2025-02-21 17:13:07,856 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:13:07,856 - image_processor - INFO - Original image size: (2897, 2848)
+2025-02-21 17:13:07,960 - image_processor - INFO - Resized image to: (399, 393)
+2025-02-21 17:13:07,961 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:13:07,961 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
                 Return your response in this EXACT JSON format:
                 {
                     "answer_text": "write the exact mathematical answer/expression here",
                     "explanation": "briefly explain the work shown",
                     "confidence": 0.95
                 }
-2025-02-21 16:47:28,449 - image_processor - INFO - Raw API response: **Answer Extraction**
+2025-02-21 17:13:09,629 - image_processor - INFO - Raw API response: **Answer Extraction**
 
-* **Answer Text**: 6X + 10 = 0
-* **Explanation**: The image shows a simple algebraic equation, where the variable X is being solved for. The equation is set equal to zero, indicating that the solution will result in a value of zero.
+* **Answer Text**: 8/3 = n
+* **Explanation**: The image shows a series of algebraic equations and their solutions. The final equation, 8/3 = n, is the solution to the problem.
 * **Confidence**: 0.95
-2025-02-21 16:47:28,450 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 6X + 10 = 0 : The image shows a simple algebraic equation, where the variable X is being solved for. The equation is set equal to zero, indicating that the solution will result in a value of zero. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:48:00,393 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:48:00,393 - image_processor - INFO - Original image size: (2761, 1619)
-2025-02-21 16:48:00,454 - image_processor - INFO - Resized image to: (400, 234)
-2025-02-21 16:48:00,455 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:48:00,455 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+2025-02-21 17:13:09,630 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 8/3 = n : The image shows a series of algebraic equations and their solutions. The final equation, 8/3 = n, is the solution to the problem. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 17:13:51,534 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:13:51,534 - image_processor - INFO - Original image size: (2458, 1236)
+2025-02-21 17:13:51,574 - image_processor - INFO - Resized image to: (400, 201)
+2025-02-21 17:13:51,574 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:13:51,575 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
                 Return your response in this EXACT JSON format:
                 {
                     "answer_text": "write the exact mathematical answer/expression here",
                     "explanation": "briefly explain the work shown",
                     "confidence": 0.95
                 }
-2025-02-21 16:48:01,867 - image_processor - INFO - Raw API response: **Answer Extraction**
+2025-02-21 17:13:52,792 - image_processor - INFO - Raw API response: **Answer Extraction**
 
-* **Answer Text**: 2x + 4x + 10 = 0, 6x + 10 = 0
-* **Explanation**: The image shows two equations with variables and constants. The first equation is 2x + 4x + 10 = 0, which can be simplified to 6x + 10 = 0 by combining like terms.
+* **Answer Text**: n = 8/2, n = 4
+* **Explanation**: The image shows a simple algebraic equation where 'n' is equal to 8 divided by 2, which equals 4.
 * **Confidence**: 0.95
-2025-02-21 16:48:01,868 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2x + 4x + 10 = 0, 6x + 10 = 0 : The image shows two equations with variables and constants. The first equation is 2x + 4x + 10 = 0, which can be simplified to 6x + 10 = 0 by combining like terms. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:48:41,052 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:48:41,052 - image_processor - INFO - Original image size: (2458, 2395)
-2025-02-21 16:48:41,129 - image_processor - INFO - Resized image to: (400, 389)
-2025-02-21 16:48:41,130 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:48:41,130 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+2025-02-21 17:13:52,792 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ": n = 8/2, n = 4 : The image shows a simple algebraic equation where 'n' is equal to 8 divided by 2, which equals 4. : 0.95", 'explanation': '', 'confidence': 0.5}
+2025-02-21 17:14:46,351 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:14:46,352 - image_processor - INFO - Original image size: (2457, 1015)
+2025-02-21 17:14:46,384 - image_processor - INFO - Resized image to: (400, 165)
+2025-02-21 17:14:46,385 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:14:46,385 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
                 Return your response in this EXACT JSON format:
                 {
                     "answer_text": "write the exact mathematical answer/expression here",
                     "explanation": "briefly explain the work shown",
                     "confidence": 0.95
                 }
-2025-02-21 16:48:42,565 - image_processor - INFO - Raw API response: **Answer Extraction**
+2025-02-21 17:14:47,712 - image_processor - INFO - Raw API response: **Answer Extraction**
 
-* **Answer Text**: 6x = -10
-* **Explanation**: The image shows a simple algebraic equation being solved for x. The equation is 6x + 10 = 0, and the solution is 6x = -10.
+* **Answer Text**: n = 8/2, n = 4
+* **Explanation**: The image shows a simple algebraic equation where 'n' is equal to 8 divided by 2, which equals 4.
 * **Confidence**: 0.95
-2025-02-21 16:48:42,565 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 6x = -10 : The image shows a simple algebraic equation being solved for x. The equation is 6x + 10 = 0, and the solution is 6x = -10. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:49:23,222 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:49:23,222 - image_processor - INFO - Original image size: (2458, 1494)
-2025-02-21 16:49:23,269 - image_processor - INFO - Resized image to: (400, 243)
-2025-02-21 16:49:23,270 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:49:23,270 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+2025-02-21 17:14:47,713 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ": n = 8/2, n = 4 : The image shows a simple algebraic equation where 'n' is equal to 8 divided by 2, which equals 4. : 0.95", 'explanation': '', 'confidence': 0.5}
+2025-02-21 17:15:05,757 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-21 17:15:05,757 - image_processor - INFO - Original image size: (2458, 581)
+2025-02-21 17:15:05,776 - image_processor - INFO - Resized image to: (400, 94)
+2025-02-21 17:15:05,777 - image_processor - INFO - Image converted and encoded
+2025-02-21 17:15:05,777 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
                 Return your response in this EXACT JSON format:
                 {
                     "answer_text": "write the exact mathematical answer/expression here",
                     "explanation": "briefly explain the work shown",
                     "confidence": 0.95
                 }
-2025-02-21 16:49:25,231 - image_processor - INFO - Raw API response: **Answer Extraction**
+2025-02-21 17:15:07,091 - image_processor - INFO - Raw API response: **Answer Extraction Result**
 
-* **Answer Text**: 2n = -5, n = -5/2
-* **Explanation**: The image shows a simple algebraic equation being solved for the variable n. The equation starts with 2n = -5, and then the value of n is found by dividing both sides by 2, resulting in n = -5/2.
-* **Confidence**: 0.95
-2025-02-21 16:49:25,231 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n = -5, n = -5/2 : The image shows a simple algebraic equation being solved for the variable n. The equation starts with 2n = -5, and then the value of n is found by dividing both sides by 2, resulting in n = -5/2. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:50:00,927 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:50:00,927 - image_processor - INFO - Original image size: (2458, 537)
-2025-02-21 16:50:00,945 - image_processor - INFO - Resized image to: (400, 87)
-2025-02-21 16:50:00,945 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:50:00,945 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:50:02,498 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: 10
-* **Explanation**: The image shows a simple algebraic equation, 3n = 10, where 'n' is the variable. To solve for 'n', we divide both sides of the equation by 3, resulting in n = 10/3. However, the image does not show this step and directly presents the solution as n = 10, which is incorrect based on the given equation. The correct solution should be n = 10/3.
-* **Confidence**: 0.95
-2025-02-21 16:50:02,498 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ": 10 : The image shows a simple algebraic equation, 3n = 10, where 'n' is the variable. To solve for 'n', we divide both sides of the equation by 3, resulting in n = 10/3. However, the image does not show this step and directly presents the solution as n = 10, which is incorrect based on the given equation. The correct solution should be n = 10/3. : 0.95", 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:50:31,023 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:50:31,023 - image_processor - INFO - Original image size: (2458, 985)
-2025-02-21 16:50:31,056 - image_processor - INFO - Resized image to: (400, 160)
-2025-02-21 16:50:31,057 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:50:31,057 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:50:32,513 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text:** n = 5/3
-* **Explanation:** The image shows a simple equation where 'n' is equal to the fraction 5/3.
-* **Confidence:** 0.95
-2025-02-21 16:50:32,513 - image_processor - INFO - Extracted content (no JSON): {'answer_text': "n = 5/3 The image shows a simple equation where 'n' is equal to the fraction 5/3. 0.95", 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:50:53,978 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:50:53,978 - image_processor - INFO - Original image size: (2458, 903)
-2025-02-21 16:50:54,006 - image_processor - INFO - Resized image to: (400, 146)
-2025-02-21 16:50:54,007 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:50:54,007 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:50:55,299 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text**: n = -5/3
-* **Explanation**: The image shows a simple algebraic equation, where the variable "n" is equal to the fraction "-5/3". This equation represents a basic mathematical relationship between the variable and its value.
-* **Confidence**: 0.95
-2025-02-21 16:50:55,300 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': n = -5/3 : The image shows a simple algebraic equation, where the variable "n" is equal to the fraction "-5/3". This equation represents a basic mathematical relationship between the variable and its value. : 0.95', 'explanation': '', 'confidence': 0.5}
-2025-02-21 16:52:01,402 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
-2025-02-21 16:52:01,403 - image_processor - INFO - Original image size: (2458, 1489)
-2025-02-21 16:52:01,451 - image_processor - INFO - Resized image to: (400, 242)
-2025-02-21 16:52:01,452 - image_processor - INFO - Image converted and encoded
-2025-02-21 16:52:01,452 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
-                Return your response in this EXACT JSON format:
-                {
-                    "answer_text": "write the exact mathematical answer/expression here",
-                    "explanation": "briefly explain the work shown",
-                    "confidence": 0.95
-                }
-2025-02-21 16:52:02,886 - image_processor - INFO - Raw API response: **Answer Extraction**
-
-* **Answer Text:** -5/3
-* **Explanation:** The image shows a mathematical equation with the solution -5/3. The equation is 6n/6 = -10/6, which simplifies to n = -5/3.
-* **Confidence:** 0.95
-2025-02-21 16:52:02,886 - image_processor - INFO - Extracted content (no JSON): {'answer_text': '-5/3 The image shows a mathematical equation with the solution -5/3. The equation is 6n/6 = -10/6, which simplifies to n = -5/3. 0.95', 'explanation': '', 'confidence': 0.5}
+*   **Answer Text:** n = 4
+*   **Explanation:** The image shows a simple equation where 'n' is equal to 4. This indicates that the value of 'n' has been determined or set to 4.
+*   **Confidence:** 0.95
+2025-02-21 17:15:07,091 - image_processor - INFO - Extracted content (no JSON): {'answer_text': "n = 4 The image shows a simple equation where 'n' is equal to 4. This indicates that the value of 'n' has been determined or set to 4. 0.95", 'explanation': '', 'confidence': 0.5}

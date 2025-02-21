@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import {
   View,
+  Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Text,
   Image,
-  ActivityIndicator,
   Alert,
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { processProblem } from '../services/api';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
-import { processProblem } from '../services/api';
 
 export default function HomeScreen({ navigation }) {
   const [problemText, setProblemText] = useState('');
@@ -21,54 +22,36 @@ export default function HomeScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   const pickImage = async () => {
-    console.log('Starting image picker...');
-    
-    // Request permission
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    console.log('Image picker permission status:', status);
-    
     if (status !== 'granted') {
       Alert.alert('Permission needed', 'Please grant permission to access your photos.');
       return;
     }
 
-    console.log('Launching image picker...');
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 1,
     });
 
-    console.log('Image picker result:', result);
-
     if (!result.canceled && result.assets && result.assets[0]) {
-      console.log('Image selected:', result.assets[0].uri);
       setSelectedImage(result.assets[0].uri);
     }
   };
 
   const takePhoto = async () => {
-    console.log('Starting camera...');
-    
-    // Request camera permission
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
-    console.log('Camera permission status:', status);
-    
     if (status !== 'granted') {
       Alert.alert('Permission needed', 'Please grant permission to use the camera.');
       return;
     }
 
-    console.log('Launching camera...');
     const result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       quality: 1,
     });
 
-    console.log('Camera result:', result);
-
     if (!result.canceled && result.assets && result.assets[0]) {
-      console.log('Photo taken:', result.assets[0].uri);
       setSelectedImage(result.assets[0].uri);
     }
   };
@@ -79,165 +62,158 @@ export default function HomeScreen({ navigation }) {
 
   const handleSubmit = async () => {
     if (!problemText.trim() && !selectedImage) {
-      Alert.alert('Input needed', 'Please enter a problem or select an image.');
+      Alert.alert('Error', 'Please enter a problem or select an image');
       return;
     }
 
     setLoading(true);
     try {
-      const response = await processProblem(problemText.trim(), selectedImage);
-      console.log('API Response:', response);
+      const result = await processProblem(problemText.trim(), selectedImage);
+      console.log('Problem processing response:', result);
 
-      if (response.success) {
+      if (result.success && result.steps) {
         // Extract steps from the nested structure
-        const steps = response.steps?.steps || [];
-        console.log('Extracted steps:', steps);
-        navigation.navigate('Tutor', { 
+        const steps = result.steps.steps || [];
+        navigation.navigate('Tutor', {
           steps: steps,
-          problem: response.problem || problemText
+          problem: result.problem || problemText || 'Image Problem'
         });
       } else {
-        Alert.alert('Error', response.error || 'Failed to process problem');
+        Alert.alert('Error', result.error || 'Failed to process problem');
       }
     } catch (error) {
-      console.error('Error:', error);
-      Alert.alert('Error', 'Failed to process problem');
+      console.error('Error processing problem:', error);
+      Alert.alert('Error', 'Failed to process problem. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          value={problemText}
-          onChangeText={setProblemText}
-          placeholder="Enter your math problem"
-          placeholderTextColor="#999"
-          multiline
-        />
-        <View style={styles.imageButtonsContainer}>
-          <TouchableOpacity 
-            style={styles.imageButton} 
-            onPress={takePhoto}
-          >
-            <Ionicons name="camera-outline" size={24} color="#007AFF" />
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.imageButton} 
-            onPress={pickImage}
-          >
-            <Ionicons name="image-outline" size={24} color="#007AFF" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {selectedImage && (
-        <View style={styles.imagePreviewContainer}>
-          <Image
-            source={{ uri: selectedImage }}
-            style={styles.imagePreview}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inputWrapper}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={problemText}
+            onChangeText={setProblemText}
+            placeholder="Enter your math problem"
+            placeholderTextColor="#999"
+            multiline
           />
-          <TouchableOpacity 
-            style={styles.removeImageButton}
-            onPress={removeImage}
-          >
-            <Ionicons name="close-circle" size={24} color="#FF3B30" />
-          </TouchableOpacity>
+          <View style={styles.iconContainer}>
+            <TouchableOpacity onPress={takePhoto}>
+              <Ionicons name="camera-outline" size={24} color="#007AFF" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={pickImage} style={styles.galleryIcon}>
+              <Ionicons name="image-outline" size={24} color="#007AFF" />
+            </TouchableOpacity>
+          </View>
         </View>
-      )}
 
-      <TouchableOpacity
-        style={[styles.submitButton, loading && styles.submitButtonDisabled]}
-        onPress={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? (
-          <ActivityIndicator color="#FFFFFF" />
-        ) : (
-          <Text style={styles.submitButtonText}>Solve Problem</Text>
+        {selectedImage && (
+          <View style={styles.imagePreviewContainer}>
+            <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
+            <TouchableOpacity style={styles.removeButton} onPress={removeImage}>
+              <Ionicons name="close-circle" size={24} color="#FF3B30" />
+            </TouchableOpacity>
+          </View>
         )}
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
+
+        <TouchableOpacity
+          style={[styles.solveButton, loading && styles.solveButtonDisabled]}
+          onPress={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? (
+            <ActivityIndicator color="#FFFFFF" />
+          ) : (
+            <Text style={styles.solveButtonText}>Solve Problem</Text>
+          )}
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#FFFFFF',
+  },
+  header: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  inputWrapper: {
+    padding: 16,
+    flex: 1,
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#DDD',
-    borderRadius: 8,
     backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#E5E5EA',
+    marginBottom: 16,
   },
   input: {
-    flex: 1,
     padding: 12,
     fontSize: 16,
-    color: '#333',
-    minHeight: 80,
+    color: '#000000',
+    minHeight: 100,
+    textAlignVertical: 'top',
   },
-  imageButtonsContainer: {
+  iconContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    borderTopWidth: 1,
+    borderTopColor: '#E5E5EA',
+    padding: 8,
+    justifyContent: 'flex-start',
   },
-  imageButton: {
-    padding: 12,
-    alignSelf: 'flex-start',
+  galleryIcon: {
+    marginLeft: 16,
   },
   imagePreviewContainer: {
-    marginBottom: 20,
-    borderRadius: 12,
+    marginBottom: 16,
+    borderRadius: 8,
     overflow: 'hidden',
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#E5E5EA',
   },
   imagePreview: {
     width: '100%',
     height: 200,
     resizeMode: 'contain',
+    backgroundColor: '#F8F8F8',
   },
-  removeImageButton: {
+  removeButton: {
     position: 'absolute',
-    top: 10,
-    right: 10,
+    top: 8,
+    right: 8,
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    padding: 4,
+    padding: 2,
   },
-  submitButton: {
+  solveButton: {
     backgroundColor: '#007AFF',
-    paddingVertical: 15,
-    borderRadius: 12,
+    borderRadius: 25,
+    paddingVertical: 14,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    justifyContent: 'center',
   },
-  submitButtonDisabled: {
-    backgroundColor: '#B4D8FD',
+  solveButtonDisabled: {
+    opacity: 0.7,
   },
-  submitButtonText: {
+  solveButtonText: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
   },
 });
