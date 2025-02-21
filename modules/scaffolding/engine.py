@@ -9,52 +9,65 @@ class ScaffoldingEngine:
     def __init__(self):
         self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
         
-        self.scaffolding_prompt = """Create a personalized learning path for a student struggling with {concept}.
+        self.scaffolding_prompt = """Create a step-by-step solution guide for this math problem.
 
-Analysis Input:
-{problem_analysis}
+PROBLEM:
+{problem_text}
 
-Knowledge Assessment:
-{knowledge_assessment}
+CONTEXT:
+Type: {concept}
+Analysis: {problem_analysis}
+Student Level: {knowledge_assessment}
 
-Output a JSON structure with:
+Return a JSON object with solution steps for the GIVEN problem above (not the example). Each step must have:
+- instruction: What to do in this step
+- expected_answer: The correct answer for this step
+- hint: A helpful hint
+- explanation: Why this step works
+
+Format example (but create steps for the GIVEN problem, not this example):
 {{
-    "learning_objectives": ["list of specific objectives"],
     "steps": [
         {{
-            "type": "explanation|example|practice",
-            "content": "instructional content",
-            "resources": ["relevant resources"],
-            "checkpoint_question": "question to verify understanding"
+            "instruction": "First step instruction",
+            "expected_answer": "expected result",
+            "hint": "helpful hint",
+            "explanation": "why this step works"
         }}
-    ],
-    "adaptation_rules": {{
-        "success": "next steps for mastery",
-        "struggle": "remediation strategies"
-    }}
+    ]
 }}"""
 
     def generate_scaffolding(self, 
                             concept: str,
-                            problem_analysis: Dict,
-                            knowledge_assessment: Dict) -> Dict:
-        """Generate adaptive learning path."""
+                            problem_analysis: str,
+                            knowledge_assessment: str,
+                            problem_text: str) -> Dict:
+        """Generate scaffolding steps for the given problem."""
         try:
             response = self.client.chat.completions.create(
                 model="mixtral-8x7b-32768",
-                messages=[{
-                    "role": "system",
-                    "content": self.scaffolding_prompt.format(
-                        concept=concept,
-                        problem_analysis=json.dumps(problem_analysis),
-                        knowledge_assessment=json.dumps(knowledge_assessment)
-                    )
-                }],
-                response_format={"type": "json_object"}
+                messages=[
+                    {
+                        "role": "system",
+                        "content": self.scaffolding_prompt.format(
+                            concept=concept,
+                            problem_analysis=problem_analysis, 
+                            knowledge_assessment=knowledge_assessment,
+                            problem_text=problem_text
+                        )
+                    }
+                ],
+                temperature=0.1,
+                max_tokens=1000,
             )
-            return json.loads(response.choices[0].message.content)
+            
+            # Extract the JSON response
+            json_str = response.choices[0].message.content
+            return json.loads(json_str)
+
         except Exception as e:
-            raise Exception(f"Scaffolding generation failed: {str(e)}")
+            print(f"Debug - Unexpected error: {str(e)}")
+            return None
 
     def adapt_path(self, progress_data: Dict) -> Dict:
         """Adjust learning path based on student progress."""
