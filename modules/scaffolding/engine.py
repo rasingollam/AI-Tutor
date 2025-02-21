@@ -26,6 +26,7 @@ Create steps that:
 2. Include the expected result of each step
 3. Provide helpful hints for common mistakes
 4. Give clear explanations of the mathematical concepts
+5. Pay careful attention to signs (+ and -) in equations
 
 For each step, provide:
 - instruction: Clear, specific instruction about what to do AND what the result should look like
@@ -33,17 +34,24 @@ For each step, provide:
 - hint: A helpful hint that guides without giving away the answer
 - explanation: Why this step is important and how it helps solve the problem
 
+IMPORTANT:
+1. Pay careful attention to signs (+ and -) when moving terms
+2. Double-check all arithmetic
+3. Make sure each step follows logically from the previous one
+4. Verify that the final answer is correct by substituting it back into the original equation
+5. Return ONLY the JSON object without any markdown formatting or explanatory text
+
 Example format (but create steps for the GIVEN problem):
-{{
+{
     "steps": [
-        {{
+        {
             "instruction": "Move all x terms to the left side by subtracting 4x from both sides. You should get: -2x + 6 = -2",
             "expected_answer": "-2x + 6 = -2|-2x+6=-2|6-2x=-2",
             "hint": "When moving terms, remember to change their signs",
             "explanation": "Grouping like terms (terms with x) on one side makes it easier to solve for x"
-        }}
+        }
     ]
-}}"""
+}"""
 
     def generate_solution_steps(self, problem: str) -> List[Dict]:
         """Generate solution steps for a problem."""
@@ -100,18 +108,52 @@ Example format (but create steps for the GIVEN problem):
         """Generate scaffolding steps for the given problem."""
         logger.debug(f"Generating scaffolding for concept: {concept}")
         try:
-            prompt = self.scaffolding_prompt.format(
-                concept=concept,
-                problem_analysis=problem_analysis,
-                knowledge_assessment=knowledge_assessment,
-                problem_text=problem_text
-            )
-            
-            # Add explicit JSON request to prompt
-            prompt += "\n\nRespond with a valid JSON object containing the steps."
+            prompt = f"""Create a step-by-step solution guide for this math problem.
+
+PROBLEM:
+{problem_text}
+
+CONTEXT:
+Type: {concept}
+Analysis: {problem_analysis}
+Student Level: {knowledge_assessment}
+
+Create steps that:
+1. Are clear and specific about what needs to be done
+2. Include the expected result of each step
+3. Provide helpful hints for common mistakes
+4. Give clear explanations of the mathematical concepts
+5. Pay careful attention to signs (+ and -) in equations
+
+For each step, provide:
+- instruction: Clear, specific instruction about what to do AND what the result should look like
+- expected_answer: The answer for this specific step (include alternate forms if applicable)
+- hint: A helpful hint that guides without giving away the answer
+- explanation: Why this step is important and how it helps solve the problem
+
+IMPORTANT:
+1. Pay careful attention to signs (+ and -) when moving terms
+2. Double-check all arithmetic
+3. Make sure each step follows logically from the previous one
+4. Verify that the final answer is correct by substituting it back into the original equation
+5. Return ONLY the JSON object without any markdown formatting or explanatory text
+
+Example format (but create steps for the GIVEN problem):
+{{
+    "steps": [
+        {{
+            "instruction": "Move all x terms to the left side by subtracting 4x from both sides. You should get: -2x + 6 = -2",
+            "expected_answer": "-2x + 6 = -2|-2x+6=-2|6-2x=-2",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with x) on one side makes it easier to solve for x"
+        }}
+    ]
+}}
+
+Respond with ONLY a valid JSON object containing the steps. Do not include any markdown formatting or explanatory text."""
             
             response = self.client.chat.completions.create(
-                model="mixtral-8x7b-32768",
+                model="llama3-70b-8192",
                 messages=[{
                     "role": "system",
                     "content": prompt
@@ -123,14 +165,44 @@ Example format (but create steps for the GIVEN problem):
             result = response.choices[0].message.content.strip()
             logger.debug(f"Raw scaffolding response: {result}")
             
-            # Extract JSON from response
+            # Remove any markdown code blocks and find JSON
+            result = result.replace('```json', '').replace('```', '').strip()
+            
             try:
-                start = result.find('{')
-                end = result.rfind('}') + 1
-                if start >= 0 and end > start:
-                    json_str = result[start:end]
-                    return json.loads(json_str)
-            except (json.JSONDecodeError, ValueError) as e:
+                # First try direct JSON parsing
+                try:
+                    data = json.loads(result)
+                except json.JSONDecodeError:
+                    # If that fails, try to extract JSON from the response
+                    start = result.find('{')
+                    end = result.rfind('}') + 1
+                    if start >= 0 and end > start:
+                        json_str = result[start:end]
+                        data = json.loads(json_str)
+                    else:
+                        raise ValueError("No JSON found in response")
+                
+                # Validate steps
+                if "steps" in data:
+                    for step in data["steps"]:
+                        # Ensure all required fields are present
+                        required_fields = ["instruction", "expected_answer", "hint", "explanation"]
+                        if not all(field in step for field in required_fields):
+                            raise ValueError("Missing required fields in step")
+                            
+                        # Validate that the step makes mathematical sense
+                        if "=" in step["expected_answer"]:
+                            parts = step["expected_answer"].split("=")
+                            if len(parts) < 2:  
+                                raise ValueError("Invalid equation format")
+                                
+                    logger.info(f"Generated valid scaffolding with {len(data['steps'])} steps")
+                    return data
+                    
+                else:
+                    raise ValueError("No steps found in response")
+                    
+            except Exception as e:
                 logger.error(f"Invalid JSON in scaffolding response: {result}")
                 
             # If we get here, return default steps

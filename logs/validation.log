@@ -532,3 +532,404 @@ Validating answer for step: Move all n terms to the left side by subtracting 4n 
 2025-02-21 13:24:21,969 - validator - INFO - Image processing result: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2', 'explanation': 'The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is then simplified to 2n + 6 = 4n - 2. This equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.', 'confidence': 0.95}
 2025-02-21 13:24:21,969 - validator - INFO - Extracted answer from image: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2
 2025-02-21 13:24:22,991 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': 'The student answer is not equivalent to the expected answer. The student moved the terms correctly, but the final equation is not equal to -2n + 6 = 2.', 'normalized_answer': '-2n + 6 = -2', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:29:54,695 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:29:54,788 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:30:26,628 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:30:26,687 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:30:35,528 - validator - INFO - Generating solution steps for: 2(n+3) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:30:35,528 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:30:37,401 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 on the left side of the equation, resulting in: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember the distributive property: a(b+c) = ab + ac",
+            "explanation": "Distributing the 2 allows us to isolate n"
+        },
+        {
+            "instruction": "Move all n terms to the left side by subtracting 4n from both sides. Also, move the constant terms to the right side. You should get: -2n + 6 = 2",
+            "expected_answer": "-2n + 6 = 2",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with n) on one side makes it easier to solve for n"
+        },
+        {
+            "instruction": "Move -6 to the right side by adding 6 to both sides. You should get: -2n = 8",
+            "expected_answer": "-2n = 8",
+            "hint": "Remember to keep the signs consistent",
+            "explanation": "Moving the constant term to the right side simplifies the equation"
+        },
+        {
+            "instruction": "Divide both sides by -2 to solve for n. Remember to flip the sign when dividing by a negative number. You should get: n = -4",
+            "expected_answer": "n = -4",
+            "hint": "When dividing, flip the sign if the divisor is negative",
+            "explanation": "Dividing both sides by -2 isolates n"
+        }
+    ]
+}
+2025-02-21 13:30:37,401 - validator - INFO - Generated valid scaffolding with 4 steps
+2025-02-21 13:30:37,401 - validator - INFO - Generated 4 solution steps
+2025-02-21 13:30:58,034 - validator - INFO - 
+Validating answer for step: Distribute the 2 on the left side of the equation, resulting in: 2n + 6 = 4n - 2
+2025-02-21 13:30:58,034 - validator - INFO - Expected answer: 2n + 6 = 4n - 2
+2025-02-21 13:30:58,034 - validator - INFO - User answer: modules/image_processing/test_images/2.jpeg
+2025-02-21 13:30:58,034 - validator - INFO - Processing image answer: modules/image_processing/test_images/2.jpeg
+2025-02-21 13:30:59,846 - validator - INFO - Image processing result: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2', 'explanation': 'The image shows two equations: 2(n+3) = 4n - 2 and 2n + 6 = 4n - 2. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is difficult to provide further explanation.', 'confidence': 0.95}
+2025-02-21 13:30:59,846 - validator - INFO - Extracted answer from image: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2
+2025-02-21 13:31:00,918 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student correctly distributed the 2 on the left side of the equation, resulting in 2n + 6 = 4n - 2.', 'normalized_answer': '2n + 6 = 4n - 2', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-21 13:31:34,209 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 4n from both sides. Also, move the constant terms to the right side. You should get: -2n + 6 = 2
+2025-02-21 13:31:34,209 - validator - INFO - Expected answer: -2n + 6 = 2
+2025-02-21 13:31:34,209 - validator - INFO - User answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:31:34,209 - validator - INFO - Processing image answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:31:36,350 - validator - INFO - Image processing result: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2', 'explanation': 'The image shows a series of algebraic equations being solved for n. The first equation is 2(n+3) = 4n - 2, which is simplified to 2n + 6 = 4n - 2. Then, the equation is further simplified to 2n - 4n + 6 = 4n - 4n - 2, and finally to -2n + 6 = -2.', 'confidence': 0.95}
+2025-02-21 13:31:36,350 - validator - INFO - Extracted answer from image: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2, 2n - 4n + 6 = 4n - 4n - 2, -2n + 6 = -2
+2025-02-21 13:31:37,373 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student answer is not equivalent to the expected answer. The student moved the 'n' terms correctly, but made an error when moving the constant terms. The constant terms should be -2, not -4.", 'normalized_answer': '-2n + 6 = -2', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:32:44,161 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:32:44,218 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:32:52,641 - validator - INFO - Generating solution steps for: 2( n + 3 ) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:32:52,641 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:33:01,035 - validator - DEBUG - Raw scaffolding response: <think>
+Okay, so I have this equation to solve: 2(n + 3) = 4n - 2. Hmm, let me think about how to approach this. I remember that solving linear equations usually involves getting all the variables on one side and the constants on the other. 
+
+First, I think I need to simplify both sides of the equation. On the left side, there's a distributive property involved because of the 2 multiplied by (n + 3). So, I should distribute the 2 to both n and 3. That would give me 2n + 6. So now, the equation becomes 2n + 6 = 4n - 2.
+
+Wait, let me make sure I did that correctly. Yes, 2 times n is 2n, and 2 times 3 is 6. So that's correct. Now, I have 2n + 6 on the left and 4n - 2 on the right.
+
+Next, I think I need to get all the n terms on one side and the constants on the other. Maybe I can subtract 2n from both sides to get rid of it on the left. So, subtracting 2n from both sides would give me 6 = 2n - 2. Let me check that: 2n + 6 - 2n is 6, and 4n - 2 - 2n is 2n - 2. Yep, that looks right.
+
+Now, I have 6 = 2n - 2. I need to isolate the term with n. So, I should get rid of the -2 on the right side. To do that, I can add 2 to both sides. Adding 2 to both sides gives me 8 = 2n. Let me verify: 6 + 2 is 8, and 2n - 2 + 2 is 2n. Correct.
+
+Now, I have 8 = 2n. To solve for n, I need to divide both sides by 2. Dividing both sides by 2 gives me 4 = n. Alternatively, I can write it as n = 4. Let me check that: 2n would be 8, so 8 divided by 2 is 4. Yep, that makes sense.
+
+Wait, let me double-check by plugging n = 4 back into the original equation to make sure it works. Original equation: 2(n + 3) = 4n - 2. Plugging in n = 4: Left side is 2(4 + 3) = 2(7) = 14. Right side is 4(4) - 2 = 16 - 2 = 14. Both sides equal 14, so it checks out. 
+
+I think I did everything correctly. I distributed, moved variables to one side, isolated the variable, and checked my solution. It all seems to make sense. I don't think I made any mistakes, but it's always good to go through each step again to be sure.
+
+So, to recap: I started by distributing the 2, then moved the 2n to the right side, added 2 to both sides to isolate 2n, and then divided by 2 to find n = 4. Everything checks out when I substitute back into the original equation. I think I'm confident with this solution.
+</think>
+
+To solve the equation \(2(n + 3) = 4n - 2\), follow these steps:
+
+1. **Distribute the 2 on the left side:**
+   \[
+   2n + 6 = 4n - 2
+   \]
+   - This simplifies the equation by expanding the terms.
+
+2. **Subtract \(2n\) from both sides to move all \(n\) terms to one side:**
+   \[
+   6 = 2n - 2
+   \]
+   - This step isolates the variable term on the right side.
+
+3. **Add 2 to both sides to isolate the term with \(n\):**
+   \[
+   8 = 2n
+   \]
+   - This step removes the constant from the right side.
+
+4. **Divide both sides by 2 to solve for \(n\):**
+   \[
+   n = 4
+   \]
+   - This step finds the value of \(n\).
+
+5. **Verify the solution by substituting \(n = 4\) back into the original equation:**
+   - Left side: \(2(4 + 3) = 2(7) = 14\)
+   - Right side: \(4(4) -
+2025-02-21 13:33:01,035 - validator - INFO - Generated 2 solution steps
+2025-02-21 13:33:20,496 - validator - INFO - 
+Validating answer for step: Let's solve this step by step.
+2025-02-21 13:33:20,497 - validator - INFO - Expected answer: 2( n + 3 ) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:33:20,498 - validator - INFO - User answer: explan
+2025-02-21 13:33:21,423 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected answer. The correct solution for the equation 2(n + 3) = 4n - 2 is n = 5.", 'normalized_answer': 'n = 5', 'understanding_level': 'partial', 'is_final_answer': True}
+2025-02-21 13:34:46,753 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:34:46,815 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:34:55,317 - validator - INFO - Generating solution steps for: 2( n + 3 ) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:34:55,318 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:34:57,646 - validator - DEBUG - Raw scaffolding response: Here is the step-by-step solution guide for the problem:
+
+```
+{
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply the 2 by both the n and the 3 inside the parentheses",
+            "explanation": "Distributing the 2 helps to simplify the left side of the equation and prepares it for further manipulation"
+        },
+        {
+            "instruction": "Subtract 2n from both sides of the equation to isolate the n terms. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When subtracting 2n, remember to change its sign",
+            "explanation": "Subtracting 2n from both sides helps to eliminate the 2n term on the left side and prepares the equation for further solving"
+        },
+        {
+            "instruction": "Add 2 to both sides of the equation to isolate the term with n. You should get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Remember to add 2 to both sides to maintain the equality of the equation",
+            "explanation": "Adding 2 to both sides helps to eliminate the -2 term on the right side and prepares the equation for final solving"
+        },
+        {
+            "instruction": "Divide both sides of the equation by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Remember to divide both sides by 2 to maintain the equality of the equation",
+            "explanation": "Dividing both sides by 2 solves for n and gives the final answer"
+        }
+    ]
+}
+```
+
+Note: I've followed the provided format and included clear instructions, expected answers, hints, and explanations for each step. I've also paid careful attention to signs (+ and -) and double-checked the arithmetic to ensure the solution is correct.
+2025-02-21 13:34:57,647 - validator - ERROR - Invalid JSON in scaffolding response: Here is the step-by-step solution guide for the problem:
+
+```
+{
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply the 2 by both the n and the 3 inside the parentheses",
+            "explanation": "Distributing the 2 helps to simplify the left side of the equation and prepares it for further manipulation"
+        },
+        {
+            "instruction": "Subtract 2n from both sides of the equation to isolate the n terms. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When subtracting 2n, remember to change its sign",
+            "explanation": "Subtracting 2n from both sides helps to eliminate the 2n term on the left side and prepares the equation for further solving"
+        },
+        {
+            "instruction": "Add 2 to both sides of the equation to isolate the term with n. You should get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Remember to add 2 to both sides to maintain the equality of the equation",
+            "explanation": "Adding 2 to both sides helps to eliminate the -2 term on the right side and prepares the equation for final solving"
+        },
+        {
+            "instruction": "Divide both sides of the equation by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Remember to divide both sides by 2 to maintain the equality of the equation",
+            "explanation": "Dividing both sides by 2 solves for n and gives the final answer"
+        }
+    ]
+}
+```
+
+Note: I've followed the provided format and included clear instructions, expected answers, hints, and explanations for each step. I've also paid careful attention to signs (+ and -) and double-checked the arithmetic to ensure the solution is correct.
+2025-02-21 13:34:57,648 - validator - INFO - Generated 2 solution steps
+2025-02-21 13:36:59,700 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:36:59,826 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:37:12,739 - validator - INFO - Generating solution steps for: 2( n + 3 ) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:37:12,739 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:37:12,739 - validator - ERROR - Error in generate_scaffolding: '\n    "steps"'
+Traceback (most recent call last):
+  File "/home/rasi/Documents/Work/Sentinel_Systems/AI-Tutor/modules/scaffolding/engine.py", line 151, in generate_scaffolding
+    }""".format(
+         ^^^^^^^
+KeyError: '\n    "steps"'
+2025-02-21 13:37:12,740 - validator - INFO - Generated 1 solution steps
+2025-02-21 13:38:15,100 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:38:15,268 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:38:23,706 - validator - INFO - Generating solution steps for: 2(n+3) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:38:23,706 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:38:25,743 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply the 2 by both the n and the 3 inside the parentheses",
+            "explanation": "Distributing the 2 helps to get rid of the parentheses and makes it easier to work with the equation"
+        },
+        {
+            "instruction": "Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with n) on one side makes it easier to solve for n"
+        },
+        {
+            "instruction": "Add 2 to both sides to get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Isolating the term with n helps to solve for n"
+        },
+        {
+            "instruction": "Divide both sides by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Dividing by 2 solves for n and gives the final answer"
+        }
+    ]
+}
+2025-02-21 13:38:25,743 - validator - ERROR - Invalid JSON in scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply the 2 by both the n and the 3 inside the parentheses",
+            "explanation": "Distributing the 2 helps to get rid of the parentheses and makes it easier to work with the equation"
+        },
+        {
+            "instruction": "Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with n) on one side makes it easier to solve for n"
+        },
+        {
+            "instruction": "Add 2 to both sides to get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Isolating the term with n helps to solve for n"
+        },
+        {
+            "instruction": "Divide both sides by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Dividing by 2 solves for n and gives the final answer"
+        }
+    ]
+}
+2025-02-21 13:38:25,744 - validator - INFO - Generated 2 solution steps
+2025-02-21 13:39:54,225 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:39:54,296 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:40:21,047 - validator - INFO - Generating solution steps for: 2(n+3) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:40:21,047 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:40:22,988 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply the 2 by both the n and the 3 inside the parentheses",
+            "explanation": "Distributing the 2 helps to get rid of the parentheses and makes it easier to work with the equation"
+        },
+        {
+            "instruction": "Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with n) on one side makes it easier to solve for n"
+        },
+        {
+            "instruction": "Add 2 to both sides to get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Isolating the term with n helps to solve for n"
+        },
+        {
+            "instruction": "Divide both sides by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Dividing both sides by 2 solves for n"
+        }
+    ]
+}
+2025-02-21 13:40:22,989 - validator - INFO - Generated valid scaffolding with 4 steps
+2025-02-21 13:40:22,989 - validator - INFO - Generated 4 solution steps
+2025-02-21 13:40:52,034 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2
+2025-02-21 13:40:52,034 - validator - INFO - Expected answer: 2n + 6 = 4n - 2
+2025-02-21 13:40:52,034 - validator - INFO - User answer: modules/image_processing/test_images/2.jpeg
+2025-02-21 13:40:52,035 - validator - INFO - Processing image answer: modules/image_processing/test_images/2.jpeg
+2025-02-21 13:40:54,074 - validator - INFO - Image processing result: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2', 'explanation': 'The image shows two equations: 2(n+3) = 4n - 2 and 2n + 6 = 4n - 2. These equations are likely part of a larger mathematical problem or exercise, but without additional context, it is unclear what specific question or concept they are intended to illustrate.', 'confidence': 0.95}
+2025-02-21 13:40:54,074 - validator - INFO - Extracted answer from image: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2
+2025-02-21 13:40:55,039 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student has correctly distributed the 2 to the terms inside the parentheses on the left side of the equation, resulting in 2n + 6 = 4n - 2.', 'normalized_answer': '2n + 6 = 4n - 2', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-21 13:42:56,102 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2
+2025-02-21 13:42:56,103 - validator - INFO - Expected answer: 6 = 2n - 2|6=2n-2|2n-2=6
+2025-02-21 13:42:56,103 - validator - INFO - User answer: modules/image_processing/test_images/3.jpeg
+2025-02-21 13:42:56,103 - validator - INFO - Processing image answer: modules/image_processing/test_images/3.jpeg
+2025-02-21 13:42:57,614 - validator - INFO - Image processing result: {'answer_text': ': 2n - 4 : The image shows a series of algebraic equations, with the final equation being 2n - 4. This suggests that the solution to the problem is 2n - 4. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:42:57,614 - validator - INFO - Extracted answer from image: : 2n - 4 : The image shows a series of algebraic equations, with the final equation being 2n - 4. This suggests that the solution to the problem is 2n - 4. : 0.95
+2025-02-21 13:42:58,635 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be 6 = 2n - 2, not 2n - 4. The student subtracted 4 instead of 2 from both sides.", 'normalized_answer': '2n - 4', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:44:11,573 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2
+2025-02-21 13:44:11,573 - validator - INFO - Expected answer: 6 = 2n - 2|6=2n-2|2n-2=6
+2025-02-21 13:44:11,573 - validator - INFO - User answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:44:11,573 - validator - INFO - Processing image answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:44:12,888 - validator - INFO - Image processing result: {'answer_text': ': 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 2n - 2. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:44:12,888 - validator - INFO - Extracted answer from image: : 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 2n - 2. : 0.95
+2025-02-21 13:44:13,816 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be equal to the expected answer, but it is not. The student's answer is the correct step in the process, but it is not the final answer.", 'normalized_answer': '2n - 2', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:45:19,896 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2
+2025-02-21 13:45:19,896 - validator - INFO - Expected answer: 6 = 2n - 2|6=2n-2|2n-2=6
+2025-02-21 13:45:19,897 - validator - INFO - User answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:45:19,897 - validator - INFO - Processing image answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:45:21,280 - validator - INFO - Image processing result: {'answer_text': ': 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 2n - 2. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:45:21,280 - validator - INFO - Extracted answer from image: : 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 2n - 2. : 0.95
+2025-02-21 13:45:22,302 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': 'The student answer should be equal to the expected answer, but it is not. The student answer should be 6 = 2n - 2, not just 2n - 2.', 'normalized_answer': '6 = 2n - 2', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:46:00,759 - validator - INFO - ScaffoldingEngine initialized
+2025-02-21 13:46:00,822 - validator - INFO - AnswerValidator initialized
+2025-02-21 13:46:07,159 - validator - INFO - Generating solution steps for: 2(n+3) = 4n - 2 Linear Equation Solve for n
+2025-02-21 13:46:07,159 - validator - DEBUG - Generating scaffolding for concept: linear_equation
+2025-02-21 13:46:09,202 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply the 2 by both the n and the 3 inside the parentheses",
+            "explanation": "Distributing the 2 helps to get rid of the parentheses and makes it easier to work with the equation"
+        },
+        {
+            "instruction": "Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with n) on one side makes it easier to solve for n"
+        },
+        {
+            "instruction": "Add 2 to both sides to get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Isolating the term with n helps to solve for n"
+        },
+        {
+            "instruction": "Divide both sides by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Dividing both sides by 2 solves for n"
+        }
+    ]
+}
+2025-02-21 13:46:09,203 - validator - INFO - Generated valid scaffolding with 4 steps
+2025-02-21 13:46:09,203 - validator - INFO - Generated 4 solution steps
+2025-02-21 13:46:15,055 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2
+2025-02-21 13:46:15,055 - validator - INFO - Expected answer: 2n + 6 = 4n - 2
+2025-02-21 13:46:15,055 - validator - INFO - User answer: modules/image_processing/test_images/2.jpeg
+2025-02-21 13:46:15,055 - validator - INFO - Processing image answer: modules/image_processing/test_images/2.jpeg
+2025-02-21 13:46:17,292 - validator - INFO - Image processing result: {'answer_text': '2(n+3) = 4n - 2, 2n + 6 = 4n - 2', 'explanation': 'The image shows two equations: 2(n+3) = 4n - 2 and 2n + 6 = 4n - 2. These equations are likely part of a larger mathematical problem or exercise, but without more context, it is difficult to provide a specific solution or explanation.', 'confidence': 0.95}
+2025-02-21 13:46:17,292 - validator - INFO - Extracted answer from image: 2(n+3) = 4n - 2, 2n + 6 = 4n - 2
+2025-02-21 13:46:18,315 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student has correctly distributed the 2 to the terms inside the parentheses on the left side of the equation, resulting in 2n + 6 = 4n - 2.', 'normalized_answer': '2n + 6 = 4n - 2', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-21 13:46:23,486 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2
+2025-02-21 13:46:23,487 - validator - INFO - Expected answer: 6 = 2n - 2|6=2n-2|2n-2=6
+2025-02-21 13:46:23,487 - validator - INFO - User answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:46:23,487 - validator - INFO - Processing image answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:46:25,074 - validator - INFO - Image processing result: {'answer_text': ': 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 2n - 2. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:46:25,074 - validator - INFO - Extracted answer from image: : 2n - 2 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 2n - 2. : 0.95
+2025-02-21 13:46:26,097 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be equal to the expected answer, but it is not. The student's answer should be 6 = 2n - 2 instead of just 2n - 2.", 'normalized_answer': '6 = 2n - 2', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:47:38,112 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2
+2025-02-21 13:47:38,112 - validator - INFO - Expected answer: 6 = 2n - 2|6=2n-2|2n-2=6
+2025-02-21 13:47:38,113 - validator - INFO - User answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:47:38,113 - validator - INFO - Processing image answer: modules/image_processing/test_images/4.jpeg
+2025-02-21 13:47:39,621 - validator - INFO - Image processing result: {'answer_text': ': 2n - 2 : The image shows a simple algebraic equation with variables and constants. The equation is solved by combining like terms, resulting in the final answer of 2n - 2. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:47:39,621 - validator - INFO - Extracted answer from image: : 2n - 2 : The image shows a simple algebraic equation with variables and constants. The equation is solved by combining like terms, resulting in the final answer of 2n - 2. : 0.95
+2025-02-21 13:47:40,644 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be the equation '6 = 2n - 2' after moving all 'n' terms to the left side by subtracting 2n from both sides. However, the student's answer is just '2n - 2'.", 'normalized_answer': '6 = 2n - 2', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-21 13:48:15,238 - validator - INFO - 
+Validating answer for step: Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2
+2025-02-21 13:48:15,239 - validator - INFO - Expected answer: 6 = 2n - 2|6=2n-2|2n-2=6
+2025-02-21 13:48:15,239 - validator - INFO - User answer: 6=2n-2
+2025-02-21 13:48:16,281 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer is correct. They followed the instruction to move all n terms to the left side by subtracting 2n from both sides, resulting in the equation 6 = 2n - 2.", 'normalized_answer': '6 = 2n - 2', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-21 13:49:18,910 - validator - INFO - 
+Validating answer for step: Add 2 to both sides to get: 8 = 2n
+2025-02-21 13:49:18,911 - validator - INFO - Expected answer: 8 = 2n
+2025-02-21 13:49:18,911 - validator - INFO - User answer: modules/image_processing/test_images/5.jpeg
+2025-02-21 13:49:18,911 - validator - INFO - Processing image answer: modules/image_processing/test_images/5.jpeg
+2025-02-21 13:49:20,485 - validator - INFO - Image processing result: {'answer_text': ': 2n - 2 + 2 = 2n : The image shows a simple algebraic equation, where the left side of the equation is 6 + 2 and the right side is 2n - 2 + 2. By simplifying the left side, we get 8, which is equal to 2n on the right side. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-21 13:49:20,485 - validator - INFO - Extracted answer from image: : 2n - 2 + 2 = 2n : The image shows a simple algebraic equation, where the left side of the equation is 6 + 2 and the right side is 2n - 2 + 2. By simplifying the left side, we get 8, which is equal to 2n on the right side. : 0.95
+2025-02-21 13:49:21,508 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student added 2 to both sides of the equation, resulting in the correct equation 8 = 2n.', 'normalized_answer': '8 = 2n', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-21 13:50:21,326 - validator - INFO - 
+Validating answer for step: Divide both sides by 2 to solve for n. You should get: n = 4
+2025-02-21 13:50:21,326 - validator - INFO - Expected answer: n = 4
+2025-02-21 13:50:21,326 - validator - INFO - User answer: modules/image_processing/test_images/6.jpeg
+2025-02-21 13:50:21,327 - validator - INFO - Processing image answer: modules/image_processing/test_images/6.jpeg
+2025-02-21 13:50:23,000 - validator - INFO - Image processing result: {'answer_text': 'n = 4', 'explanation': 'The image shows a series of algebraic equations and their solutions. The final equation is 8 = 2n, which is solved for n by dividing both sides by 2, resulting in n = 4.', 'confidence': 0.95}
+2025-02-21 13:50:23,000 - validator - INFO - Extracted answer from image: n = 4
+2025-02-21 13:50:23,972 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student has correctly solved for n by dividing both sides of the equation by 2. The answer they have provided, n = 4, is indeed the solution to the equation.', 'normalized_answer': 'n = 4', 'understanding_level': 'full', 'is_final_answer': True}
