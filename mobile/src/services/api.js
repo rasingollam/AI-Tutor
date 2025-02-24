@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://192.168.8.17:8000'; // Replace with your local IP address
+const API_BASE_URL = 'http://192.168.191.114:8000'; // Replace with your local IP address
 
 console.log('API Base URL:', API_BASE_URL);
 

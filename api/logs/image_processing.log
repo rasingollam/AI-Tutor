@@ -575,3 +575,234 @@ The final equation, 8 = 2n, is the solution to the previous equations
 *   **Problem Type:** Linear Equation
 *   **Additional Context:** Solve for n.
 2025-02-21 18:11:23,746 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n+3) = 4n - 2 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-24 14:57:15,229 - image_processor - INFO - ImageProcessor initialized
+2025-02-24 15:32:46,780 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-24 15:32:46,786 - image_processor - INFO - Original image size: (1918, 418)
+2025-02-24 15:32:46,800 - image_processor - INFO - Resized image to: (400, 87)
+2025-02-24 15:32:46,803 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:32:46,804 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-24 15:32:48,027 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+**Problem Text:** 2( n + 3 ) = 4n - 2
+
+**Problem Type:** Linear Equation
+
+**Additional Context:** Solve for n.
+2025-02-24 15:32:48,028 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2( n + 3 ) = 4n - 2 Linear Equation Solve for n.', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-24 15:34:13,185 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-24 15:34:13,186 - image_processor - INFO - Original image size: (2948, 783)
+2025-02-24 15:34:13,216 - image_processor - INFO - Resized image to: (400, 106)
+2025-02-24 15:34:13,217 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:34:13,217 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-24 15:34:14,985 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+* **Problem Text:** 2(n + 2) + n = 4n + 15
+* **Problem Type:** Linear Equation
+* **Additional Context:** Solve for n
+2025-02-24 15:34:14,985 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 2) + n = 4n + 15 Linear Equation Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-24 15:35:38,255 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:35:38,255 - image_processor - INFO - Original image size: (2458, 459)
+2025-02-24 15:35:38,272 - image_processor - INFO - Resized image to: (400, 74)
+2025-02-24 15:35:38,272 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:35:38,272 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:35:40,305 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2n + 4 + n = 4n + 15
+* **Explanation**: The image shows a simple algebraic equation with variables and constants on both sides of the equation.
+* **Confidence**: 0.95
+2025-02-24 15:35:40,305 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n + 4 + n = 4n + 15 : The image shows a simple algebraic equation with variables and constants on both sides of the equation. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:36:25,795 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:36:25,796 - image_processor - INFO - Original image size: (2458, 410)
+2025-02-24 15:36:25,809 - image_processor - INFO - Resized image to: (400, 66)
+2025-02-24 15:36:25,810 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:36:25,810 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:36:27,085 - image_processor - INFO - Raw API response: **Answer:**
+
+{
+    "answer_text": "3n + 4 = 4n + 15",
+    "explanation": "The image shows a simple algebraic equation with one variable, n. The equation is 3n + 4 = 4n + 15.",
+    "confidence": 0.95
+}
+2025-02-24 15:36:27,085 - image_processor - INFO - Extracted JSON string: {
+    "answer_text": "3n + 4 = 4n + 15",
+    "explanation": "The image shows a simple algebraic equation with one variable, n. The equation is 3n + 4 = 4n + 15.",
+    "confidence": 0.95
+}
+2025-02-24 15:36:27,085 - image_processor - INFO - Extracted content: {'answer_text': '3n + 4 = 4n + 15', 'explanation': 'The image shows a simple algebraic equation with one variable, n. The equation is 3n + 4 = 4n + 15.', 'confidence': 0.95}
+2025-02-24 15:37:31,086 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:37:31,087 - image_processor - INFO - Original image size: (2458, 359)
+2025-02-24 15:37:31,101 - image_processor - INFO - Resized image to: (400, 58)
+2025-02-24 15:37:31,102 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:37:31,103 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:37:32,199 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 4 = 4n + 15
+* **Explanation**: The image shows a simple algebraic equation, where the variable "n" is being solved for. The equation is written in a straightforward manner, with the constant term on the right side and the variable term on the left side.
+* **Confidence**: 0.95
+2025-02-24 15:37:32,199 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 4 = 4n + 15 : The image shows a simple algebraic equation, where the variable "n" is being solved for. The equation is written in a straightforward manner, with the constant term on the right side and the variable term on the left side. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:38:33,840 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:38:33,840 - image_processor - INFO - Original image size: (2458, 654)
+2025-02-24 15:38:33,865 - image_processor - INFO - Resized image to: (400, 106)
+2025-02-24 15:38:33,865 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:38:33,866 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:38:34,981 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 4 = n + 15
+* **Explanation**: The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 4 = n + 15.
+* **Confidence**: 0.95
+2025-02-24 15:38:34,982 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 4 = n + 15 : The image shows a mathematical equation with variables and constants. The equation is solved step by step, resulting in the final answer of 4 = n + 15. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:39:21,761 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:39:21,761 - image_processor - INFO - Original image size: (2458, 417)
+2025-02-24 15:39:21,777 - image_processor - INFO - Resized image to: (400, 67)
+2025-02-24 15:39:21,778 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:39:21,779 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:39:23,394 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text:** n = -11
+* **Explanation:** The image shows a simple equation with the variable "n" equal to -11. This suggests that the solution to an algebraic equation or problem is being presented, where the value of "n" has been determined as -11.
+* **Confidence:** 0.95
+2025-02-24 15:39:23,394 - image_processor - INFO - Extracted content (no JSON): {'answer_text': 'n = -11 The image shows a simple equation with the variable "n" equal to -11. This suggests that the solution to an algebraic equation or problem is being presented, where the value of "n" has been determined as -11. 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:51:58,622 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:51:58,623 - image_processor - INFO - Original image size: (1004, 653)
+2025-02-24 15:51:58,634 - image_processor - INFO - Resized image to: (400, 260)
+2025-02-24 15:51:58,637 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:51:58,637 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:51:59,936 - image_processor - INFO - Raw API response: **Answer Extraction Result**
+
+* **Answer Text:** NH3
+* **Explanation:** The image shows the chemical formula for ammonia, which is a compound composed of nitrogen (N) and hydrogen (H). The subscript 3 indicates that there are three hydrogen atoms bonded to one nitrogen atom.
+* **Confidence:** 0.95
+2025-02-24 15:51:59,936 - image_processor - INFO - Extracted content (no JSON): {'answer_text': 'NH3 The image shows the chemical formula for ammonia, which is a compound composed of nitrogen (N) and hydrogen (H). The subscript 3 indicates that there are three hydrogen atoms bonded to one nitrogen atom. 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:52:25,708 - image_processor - INFO - Processing image: temp_image.jpg in problem mode
+2025-02-24 15:52:25,708 - image_processor - INFO - Original image size: (2458, 507)
+2025-02-24 15:52:25,728 - image_processor - INFO - Resized image to: (400, 82)
+2025-02-24 15:52:25,728 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:52:25,728 - image_processor - INFO - Using prompt: You are a math problem extractor. Look at this image and extract ONLY the math problem.
+                Return your response in this EXACT JSON format:
+                {
+                    "problem_text": "write the exact math problem here",
+                    "problem_type": "linear_equation/quadratic/word_problem/etc",
+                    "additional_context": "any additional instructions or context"
+                }
+2025-02-24 15:52:26,716 - image_processor - INFO - Raw API response: **Math Problem Extraction**
+
+*   **Problem Text:** 2(n + 2) + n = 4n + 15
+*   **Problem Type:** Linear Equation
+*   **Additional Context:** Solve for n
+2025-02-24 15:52:26,716 - image_processor - INFO - Extracted content (no JSON): {'problem_text': '2(n + 2) + n = 4n + 15 Linear Equation Solve for n', 'problem_type': 'unknown', 'additional_context': ''}
+2025-02-24 15:52:49,192 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:52:49,193 - image_processor - INFO - Original image size: (2458, 368)
+2025-02-24 15:52:49,205 - image_processor - INFO - Resized image to: (400, 59)
+2025-02-24 15:52:49,206 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:52:49,206 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:52:50,465 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2n + 4 + n = 4n + 15
+* **Explanation**: The image shows a simple algebraic equation with variables and constants on both sides. The equation is not solved for any specific value of n, but rather presents an equality between two expressions involving n.
+* **Confidence**: 0.95
+2025-02-24 15:52:50,465 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n + 4 + n = 4n + 15 : The image shows a simple algebraic equation with variables and constants on both sides. The equation is not solved for any specific value of n, but rather presents an equality between two expressions involving n. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:53:40,776 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:53:40,776 - image_processor - INFO - Original image size: (2892, 506)
+2025-02-24 15:53:40,795 - image_processor - INFO - Resized image to: (400, 69)
+2025-02-24 15:53:40,795 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:53:40,795 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:53:41,978 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2n + 4 + n = 4n + 15
+* **Explanation**: The image shows a simple algebraic equation with variables and constants on both sides. The equation is not solved for any specific value of n, but rather presents an equality between two expressions involving the variable n.
+* **Confidence**: 0.95
+2025-02-24 15:53:41,979 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n + 4 + n = 4n + 15 : The image shows a simple algebraic equation with variables and constants on both sides. The equation is not solved for any specific value of n, but rather presents an equality between two expressions involving the variable n. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:54:10,739 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:54:10,740 - image_processor - INFO - Original image size: (2892, 506)
+2025-02-24 15:54:10,760 - image_processor - INFO - Resized image to: (400, 69)
+2025-02-24 15:54:10,760 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:54:10,760 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:54:11,858 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 2n + 4 + n = 4n + 15
+* **Explanation**: The image shows a simple algebraic equation with variables on both sides. The equation is not solved for any specific value of n, but rather presents an equality between two expressions involving the variable n.
+* **Confidence**: 0.95
+2025-02-24 15:54:11,858 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 2n + 4 + n = 4n + 15 : The image shows a simple algebraic equation with variables on both sides. The equation is not solved for any specific value of n, but rather presents an equality between two expressions involving the variable n. : 0.95', 'explanation': '', 'confidence': 0.5}
+2025-02-24 15:55:21,204 - image_processor - INFO - Processing image: temp_answer.jpg in answer mode
+2025-02-24 15:55:21,204 - image_processor - INFO - Original image size: (2458, 531)
+2025-02-24 15:55:21,222 - image_processor - INFO - Resized image to: (400, 86)
+2025-02-24 15:55:21,222 - image_processor - INFO - Image converted and encoded
+2025-02-24 15:55:21,222 - image_processor - INFO - Using prompt: You are a math answer extractor. Look at this image and extract ONLY the mathematical answer/work shown.
+                Return your response in this EXACT JSON format:
+                {
+                    "answer_text": "write the exact mathematical answer/expression here",
+                    "explanation": "briefly explain the work shown",
+                    "confidence": 0.95
+                }
+2025-02-24 15:55:22,847 - image_processor - INFO - Raw API response: **Answer Extraction**
+
+* **Answer Text**: 3n + 4 = 4n + 15
+* **Explanation**: The image shows a simple algebraic equation with variables on both sides. The equation is not solved for any specific value of n, but rather presents a relationship between the two expressions.
+* **Confidence**: 0.95
+2025-02-24 15:55:22,847 - image_processor - INFO - Extracted content (no JSON): {'answer_text': ': 3n + 4 = 4n + 15 : The image shows a simple algebraic equation with variables on both sides. The equation is not solved for any specific value of n, but rather presents a relationship between the two expressions. : 0.95', 'explanation': '', 'confidence': 0.5}
