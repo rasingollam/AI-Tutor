@@ -1,7 +1,4 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://q6-hj6.malindar.mobile.exp.direct",
-  "packagerNgrokUrl": "https://q6-hj6.malindar.mobile.exp.direct",
-  "ngrokPid": 44334
+  "packagerPort": 19000
 }

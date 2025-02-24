@@ -124,13 +124,19 @@ export default function TutorScreen({ route, navigation }) {
       console.log('Validation result:', validation);
 
       if (validation.success && validation.validation.is_correct) {
-        // Add current step to completed steps with the user's answer
+        // Extract the normalized answer from validation response
+        const extractedAnswer = validation.validation.normalized_answer;
+        console.log('Extracted answer:', extractedAnswer); // Debug log
+        
+        // Add current step to completed steps with the extracted answer
         const completedStep = {
           ...currentStep,
-          userAnswer: userAnswer.trim(),
+          userAnswer: selectedImage ? extractedAnswer : userAnswer.trim(),
           userImage: selectedImage,
           explanation: validation.validation.explanation
         };
+        
+        console.log('Completed step:', completedStep); // Debug log
         setCompletedSteps([...completedSteps, completedStep]);
         setFeedback({ message: validation.validation.explanation, isError: false });
         

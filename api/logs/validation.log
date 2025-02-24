@@ -602,3 +602,276 @@ Validating answer for step: Divide both sides by 2 to solve for n. You should ge
 2025-02-21 18:14:11,285 - validator - INFO - Expected answer: n = 4
 2025-02-21 18:14:11,286 - validator - INFO - User answer: N = 4
 2025-02-21 18:14:12,298 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer is correct, but the capitalization of the variable 'n' is inconsistent with the expected answer. However, this does not affect the mathematical meaning.", 'normalized_answer': 'n = 4', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 14:57:15,194 - validator - INFO - ScaffoldingEngine initialized
+2025-02-24 14:57:15,262 - validator - INFO - AnswerValidator initialized
+2025-02-24 15:32:48,028 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:32:49,707 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 6 = 4n - 2",
+            "expected_answer": "2n + 6 = 4n - 2",
+            "hint": "Remember to multiply both terms inside the parentheses by 2",
+            "explanation": "Distributing the 2 helps to get rid of the parentheses and makes it easier to work with the equation"
+        },
+        {
+            "instruction": "Move all n terms to the left side by subtracting 2n from both sides. You should get: 6 = 2n - 2",
+            "expected_answer": "6 = 2n - 2|6=2n-2|2n-2=6",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Grouping like terms (terms with n) on one side makes it easier to solve for n"
+        },
+        {
+            "instruction": "Add 2 to both sides of the equation to get: 8 = 2n",
+            "expected_answer": "8 = 2n",
+            "hint": "Adding 2 to both sides helps to isolate the term with n",
+            "explanation": "This step helps to get rid of the negative term and prepares the equation for the final step"
+        },
+        {
+            "instruction": "Divide both sides of the equation by 2 to solve for n. You should get: n = 4",
+            "expected_answer": "n = 4",
+            "hint": "Dividing both sides by 2 helps to solve for n",
+            "explanation": "This step gives us the final answer, which is the value of n"
+        }
+    ]
+}
+2025-02-24 15:32:49,707 - validator - INFO - Generated valid scaffolding with 4 steps
+2025-02-24 15:34:14,986 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:34:17,035 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15",
+            "expected_answer": "2n + 4 + n = 4n + 15",
+            "hint": "Remember to multiply the 2 by both the n and the 2 inside the parentheses",
+            "explanation": "Distributing the 2 helps to simplify the left side of the equation"
+        },
+        {
+            "instruction": "Combine like terms on the left side of the equation. You should get: 3n + 4 = 4n + 15",
+            "expected_answer": "3n + 4 = 4n + 15",
+            "hint": "Look for terms with the same variable (n) and combine them",
+            "explanation": "Combining like terms simplifies the equation and makes it easier to solve"
+        },
+        {
+            "instruction": "Subtract 3n from both sides of the equation to isolate the term with the variable. You should get: 4 = n + 15",
+            "expected_answer": "4 = n + 15",
+            "hint": "When moving terms, remember to change their signs",
+            "explanation": "Isolating the term with the variable helps to solve for n"
+        },
+        {
+            "instruction": "Subtract 15 from both sides of the equation to solve for n. You should get: -11 = n",
+            "expected_answer": "-11 = n|-11=n",
+            "hint": "Remember to perform the same operation on both sides of the equation",
+            "explanation": "Solving for n gives us the final answer"
+        },
+        {
+            "instruction": "Verify the solution by substituting n = -11 back into the original equation",
+            "expected_answer": "True",
+            "hint": "Plug in n = -11 into the original equation to check if it's true",
+            "explanation": "Verifying the solution ensures that our answer is correct"
+        }
+    ]
+}
+2025-02-24 15:34:17,035 - validator - INFO - Generated valid scaffolding with 5 steps
+2025-02-24 15:35:40,306 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15
+2025-02-24 15:35:40,306 - validator - INFO - Expected answer: 2n + 4 + n = 4n + 15
+2025-02-24 15:35:40,306 - validator - INFO - User answer: 2n + 4 + n = 4n + 15 : The image shows a simple algebraic equation with variables and constants on both sides of the equation. : 0.95
+2025-02-24 15:35:41,175 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer matches the expected answer, showing they can correctly distribute a number to terms inside parentheses.", 'normalized_answer': '2n + 4 + n = 4n + 15', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 15:36:27,086 - validator - INFO - 
+Validating answer for step: Combine like terms on the left side of the equation. You should get: 3n + 4 = 4n + 15
+2025-02-24 15:36:27,086 - validator - INFO - Expected answer: 3n + 4 = 4n + 15
+2025-02-24 15:36:27,086 - validator - INFO - User answer: 3n + 4 = 4n + 15
+2025-02-24 15:36:27,699 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student has correctly combined like terms on the left side of the equation.', 'normalized_answer': '3n + 4 = 4n + 15', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 15:37:32,200 - validator - INFO - 
+Validating answer for step: Subtract 3n from both sides of the equation to isolate the term with the variable. You should get: 4 = n + 15
+2025-02-24 15:37:32,200 - validator - INFO - Expected answer: 4 = n + 15
+2025-02-24 15:37:32,200 - validator - INFO - User answer: with the constant term on the right side and the variable term on the left side. : 0.95
+2025-02-24 15:37:33,028 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected answer. The student should have isolated the variable 'n' by subtracting 3n from both sides of the equation, resulting in '4 = n + 15'.", 'normalized_answer': "The normalized answer is not provided as the student's answer is not in standard form.", 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-24 15:38:34,983 - validator - INFO - 
+Validating answer for step: Subtract 3n from both sides of the equation to isolate the term with the variable. You should get: 4 = n + 15
+2025-02-24 15:38:34,983 - validator - INFO - Expected answer: 4 = n + 15
+2025-02-24 15:38:34,983 - validator - INFO - User answer: resulting in the final answer of 4 = n + 15. : 0.95
+2025-02-24 15:38:35,750 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer matches the expected answer, 4 = n + 15, after subtracting 3n from both sides of the equation.", 'normalized_answer': '4 = n + 15', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 15:39:23,394 - validator - INFO - 
+Validating answer for step: Subtract 15 from both sides of the equation to solve for n. You should get: -11 = n
+2025-02-24 15:39:23,395 - validator - INFO - Expected answer: -11 = n|-11=n
+2025-02-24 15:39:23,395 - validator - INFO - User answer: where the value of "n" has been determined as -11. 0.95
+2025-02-24 15:39:24,224 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student has correctly determined the value of 'n' as -11.", 'normalized_answer': '-11 = n', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 15:39:47,996 - validator - INFO - 
+Validating answer for step: Verify the solution by substituting n = -11 back into the original equation
+2025-02-24 15:39:47,996 - validator - INFO - Expected answer: True
+2025-02-24 15:39:47,996 - validator - INFO - User answer: N = -11
+2025-02-24 15:39:48,665 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': 'The student answer should be a boolean value indicating whether the equation is true or false when n = -11 is substituted back into the original equation.', 'normalized_answer': 'The normalized answer would be true or false, depending on whether the equation holds when n = -11.', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-24 15:43:03,580 - validator - INFO - 
+Validating answer for step: Verify the solution by substituting n = -11 back into the original equation
+2025-02-24 15:43:03,580 - validator - INFO - Expected answer: True
+2025-02-24 15:43:03,580 - validator - INFO - User answer: True, i get -31 in left side, also right side = -31
+Therefore,
+N = -11
+2025-02-24 15:43:04,363 - validator - ERROR - LLM validation failed: Invalid \escape: line 2 column 8 (char 9)
+2025-02-24 15:43:04,363 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': 'Basic comparison used due to error', 'normalized_answer': 'True, i get -31 in left side, also right side = -31\nTherefore,\nN = -11', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-24 15:43:44,540 - validator - INFO - 
+Validating answer for step: Verify the solution by substituting n = -11 back into the original equation
+2025-02-24 15:43:44,540 - validator - INFO - Expected answer: True
+2025-02-24 15:43:44,540 - validator - INFO - User answer: True
+2025-02-24 15:43:45,159 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer matches the expected answer, meaning that substituting n = -11 back into the original equation results in a true statement.", 'normalized_answer': 'True', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 15:48:38,844 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:48:40,661 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "The formula to measure the distance between two masses is based on the concept of distance in physics. Start by writing the formula for distance, which is given by the difference in position coordinates.",
+            "expected_answer": "d = √((x2 - x1)^2 + (y2 - y1)^2 + (z2 - z1)^2)",
+            "hint": "Think about the Pythagorean theorem in 3D space",
+            "explanation": "The distance formula is a fundamental concept in physics, and it's essential to understand how to apply it to find the distance between two points in 3D space."
+        },
+        {
+            "instruction": "If the masses are in a 2D plane, the formula simplifies to:",
+            "expected_answer": "d = √((x2 - x1)^2 + (y2 - y1)^2)",
+            "hint": "What happens when z2 - z1 = 0?",
+            "explanation": "In 2D space, the z-coordinate is not needed, and the formula reduces to a simpler form."
+        },
+        {
+            "instruction": "If the masses are on a straight line (1D), the formula further simplifies to:",
+            "expected_answer": "d = |x2 - x1|",
+            "hint": "What happens when y2 - y1 = 0 and z2 - z1 = 0?",
+            "explanation": "In 1D space, the distance is simply the absolute difference between the two points."
+        }
+    ]
+}
+2025-02-24 15:48:40,661 - validator - INFO - Generated valid scaffolding with 3 steps
+2025-02-24 15:49:10,663 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:49:11,606 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Recall the formula of ammonia from memory or a reference source.",
+            "expected_answer": "NH3",
+            "hint": "Ammonia is a common compound, and its formula is often memorized.",
+            "explanation": "The formula of ammonia is a fundamental piece of knowledge in chemistry, and recalling it from memory or a reference source is the simplest way to answer the question."
+        }
+    ]
+}
+2025-02-24 15:49:11,606 - validator - INFO - Generated valid scaffolding with 1 steps
+2025-02-24 15:49:23,047 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia from memory or a reference source.
+2025-02-24 15:49:23,048 - validator - INFO - Expected answer: NH3
+2025-02-24 15:49:23,048 - validator - INFO - User answer: NH3
+2025-02-24 15:49:23,866 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer, NH3, is indeed the correct formula for ammonia.", 'normalized_answer': 'NH3', 'understanding_level': 'full', 'is_final_answer': True}
+2025-02-24 15:49:40,675 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:49:41,922 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Recall the formula of ammonia from memory or a reference source.",
+            "expected_answer": "NH3",
+            "hint": "Ammonia is a common compound, and its formula is often memorized.",
+            "explanation": "The formula of ammonia is a fundamental piece of knowledge in chemistry, and recalling it from memory or a reference source is the simplest way to answer the question."
+        }
+    ]
+}
+2025-02-24 15:49:41,923 - validator - INFO - Generated valid scaffolding with 1 steps
+2025-02-24 15:50:05,272 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:50:06,561 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Recall the formula of ammonia, which is a compound made up of nitrogen and hydrogen atoms.",
+            "expected_answer": "NH3",
+            "hint": "Think about the chemical symbols for nitrogen and hydrogen, and how they combine to form ammonia.",
+            "explanation": "The formula of ammonia is a fundamental concept in chemistry, and it's essential to remember it to solve this problem."
+        }
+    ]
+}
+2025-02-24 15:50:06,561 - validator - INFO - Generated valid scaffolding with 1 steps
+2025-02-24 15:50:10,470 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia, which is a compound made up of nitrogen and hydrogen atoms.
+2025-02-24 15:50:10,470 - validator - INFO - Expected answer: NH3
+2025-02-24 15:50:10,470 - validator - INFO - User answer: Hskd
+2025-02-24 15:50:11,345 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected formula for ammonia. The correct formula for ammonia is NH3, which consists of one nitrogen atom (N) and three hydrogen atoms (H).", 'normalized_answer': 'N/A', 'understanding_level': 'none', 'is_final_answer': False}
+2025-02-24 15:50:13,672 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia, which is a compound made up of nitrogen and hydrogen atoms.
+2025-02-24 15:50:13,672 - validator - INFO - Expected answer: NH3
+2025-02-24 15:50:13,672 - validator - INFO - User answer: Hskdn
+2025-02-24 15:50:14,287 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer 'Hskdn' does not match the expected answer 'NH3'. The student may have misunderstood the formula for ammonia.", 'normalized_answer': 'Hskdn is not a standard form for any chemical compound.', 'understanding_level': 'none', 'is_final_answer': False}
+2025-02-24 15:50:14,899 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia, which is a compound made up of nitrogen and hydrogen atoms.
+2025-02-24 15:50:14,899 - validator - INFO - Expected answer: NH3
+2025-02-24 15:50:14,899 - validator - INFO - User answer: Hskdn
+2025-02-24 15:50:15,393 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected formula for ammonia. The formula for ammonia is NH3, which indicates one nitrogen atom (N) and three hydrogen atoms (H). The student's answer 'Hskdn' does not follow this pattern.", 'normalized_answer': 'N/A', 'understanding_level': 'none', 'is_final_answer': True}
+2025-02-24 15:50:16,332 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia, which is a compound made up of nitrogen and hydrogen atoms.
+2025-02-24 15:50:16,332 - validator - INFO - Expected answer: NH3
+2025-02-24 15:50:16,332 - validator - INFO - User answer: Hskdn
+2025-02-24 15:50:16,816 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected formula for ammonia. The formula for ammonia is NH3, which represents one nitrogen atom (N) and three hydrogen atoms (H). The student's answer 'Hskdn' does not follow this pattern.", 'normalized_answer': 'N/A', 'understanding_level': 'none', 'is_final_answer': True}
+2025-02-24 15:50:17,362 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia, which is a compound made up of nitrogen and hydrogen atoms.
+2025-02-24 15:50:17,363 - validator - INFO - Expected answer: NH3
+2025-02-24 15:50:17,363 - validator - INFO - User answer: Hskdn
+2025-02-24 15:50:17,973 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected formula for ammonia. The formula for ammonia is NH3, which represents one nitrogen atom (N) and three hydrogen atoms (H). The student's answer 'Hskdn' does not follow this pattern.", 'normalized_answer': 'N/A', 'understanding_level': 'none', 'is_final_answer': True}
+2025-02-24 15:51:28,848 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:51:29,603 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Recall the formula of ammonia from memory or a reference source.",
+            "expected_answer": "NH3",
+            "hint": "Ammonia is a common compound, and its formula is often memorized.",
+            "explanation": "The formula of ammonia is a fundamental piece of knowledge in chemistry, and recalling it from memory or a reference source is the simplest way to answer the question."
+        }
+    ]
+}
+2025-02-24 15:51:29,603 - validator - INFO - Generated valid scaffolding with 1 steps
+2025-02-24 15:51:59,937 - validator - INFO - 
+Validating answer for step: Recall the formula of ammonia from memory or a reference source.
+2025-02-24 15:51:59,945 - validator - INFO - Expected answer: NH3
+2025-02-24 15:51:59,946 - validator - INFO - User answer: which is a compound composed of nitrogen (N) and hydrogen (H). The subscript 3 indicates that there are three hydrogen atoms bonded to one nitrogen atom. 0.95
+2025-02-24 15:52:00,739 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': "The student's answer correctly identifies the formula for ammonia (NH3) and explains the subscript notation. However, the answer seems to include an extra decimal (0.95) which does not belong in the chemical formula.", 'normalized_answer': 'NH3', 'understanding_level': 'full', 'is_final_answer': False}
+2025-02-24 15:52:26,717 - validator - DEBUG - Generating scaffolding for concept: unknown
+2025-02-24 15:52:28,652 - validator - DEBUG - Raw scaffolding response: {
+    "steps": [
+        {
+            "instruction": "Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15",
+            "expected_answer": "2n + 4 + n = 4n + 15",
+            "hint": "Remember to multiply the 2 by each term inside the parentheses",
+            "explanation": "Distributing the 2 helps to simplify the left side of the equation"
+        },
+        {
+            "instruction": "Combine like terms on the left side of the equation. You should get: 3n + 4 = 4n + 15",
+            "expected_answer": "3n + 4 = 4n + 15",
+            "hint": "Look for terms with the same variable (n) and combine them",
+            "explanation": "Combining like terms simplifies the equation and makes it easier to solve"
+        },
+        {
+            "instruction": "Subtract 3n from both sides of the equation to isolate the term with the variable. You should get: 4 = n + 15",
+            "expected_answer": "4 = n + 15",
+            "hint": "Subtracting 3n from both sides helps to get rid of the 3n term on the left side",
+            "explanation": "Isolating the term with the variable (n) helps to solve for n"
+        },
+        {
+            "instruction": "Subtract 15 from both sides of the equation to solve for n. You should get: -11 = n",
+            "expected_answer": "-11 = n|-11=n",
+            "hint": "Subtracting 15 from both sides helps to get rid of the constant term",
+            "explanation": "Solving for n gives us the final answer"
+        }
+    ]
+}
+2025-02-24 15:52:28,652 - validator - INFO - Generated valid scaffolding with 4 steps
+2025-02-24 15:52:50,466 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15
+2025-02-24 15:52:50,466 - validator - INFO - Expected answer: 2n + 4 + n = 4n + 15
+2025-02-24 15:52:50,466 - validator - INFO - User answer: but rather presents an equality between two expressions involving n. : 0.95
+2025-02-24 15:52:51,362 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be an equality between two expressions involving n, not a statement about presenting an equality. The correct answer should be: 2n + 4 + n = 4n + 15", 'normalized_answer': '2n + 4 + n = 4n + 15', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-24 15:53:41,979 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15
+2025-02-24 15:53:41,979 - validator - INFO - Expected answer: 2n + 4 + n = 4n + 15
+2025-02-24 15:53:41,979 - validator - INFO - User answer: but rather presents an equality between two expressions involving the variable n. : 0.95
+2025-02-24 15:53:42,798 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be an equation, not a statement. The student needs to distribute the 2 to the terms inside the parentheses on the left side of the equation correctly to match the expected answer.", 'normalized_answer': '0.95', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-24 15:54:11,858 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15
+2025-02-24 15:54:11,858 - validator - INFO - Expected answer: 2n + 4 + n = 4n + 15
+2025-02-24 15:54:11,858 - validator - INFO - User answer: but rather presents an equality between two expressions involving the variable n. : 0.95
+2025-02-24 15:54:12,468 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer should be an equation, not a statement. The student needs to distribute the 2 to the terms inside the parentheses on the left side of the equation correctly to match the expected answer.", 'normalized_answer': '0.95', 'understanding_level': 'partial', 'is_final_answer': False}
+2025-02-24 15:54:55,922 - validator - INFO - 
+Validating answer for step: Distribute the 2 to the terms inside the parentheses on the left side of the equation. You should get: 2n + 4 + n = 4n + 15
+2025-02-24 15:54:55,923 - validator - INFO - Expected answer: 2n + 4 + n = 4n + 15
+2025-02-24 15:54:55,923 - validator - INFO - User answer: 2n + 4 + n =  4n + 15
+2025-02-24 15:54:56,738 - validator - INFO - LLM validation result: {'is_correct': True, 'explanation': 'The student has correctly distributed the 2 to the terms inside the parentheses on the left side of the equation.', 'normalized_answer': '2n + 4 + n = 4n + 15', 'understanding_level': 'full', 'is_final_answer': False}
+2025-02-24 15:55:22,848 - validator - INFO - 
+Validating answer for step: Combine like terms on the left side of the equation. You should get: 3n + 4 = 4n + 15
+2025-02-24 15:55:22,848 - validator - INFO - Expected answer: 3n + 4 = 4n + 15
+2025-02-24 15:55:22,848 - validator - INFO - User answer: but rather presents a relationship between the two expressions. : 0.95
+2025-02-24 15:55:23,890 - validator - INFO - LLM validation result: {'is_correct': False, 'explanation': "The student's answer does not match the expected answer. The student should have combined like terms on the left side of the equation to get 3n + 4 = 4n + 15.", 'normalized_answer': '0.95', 'understanding_level': 'partial', 'is_final_answer': False}
